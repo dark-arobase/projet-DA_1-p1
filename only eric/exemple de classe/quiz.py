@@ -13,7 +13,6 @@ class Quiz:
         for i in range(4):
              b=input("choix :")
              choix.append(a)
-
         self.question.append(question, choix)
     
     def ajoutreponse(self, reponse):
