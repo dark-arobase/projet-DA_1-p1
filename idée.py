@@ -15,35 +15,64 @@ button_font = ("Arial", 10, "bold")
 box_title_font = ("Arial", 12, "bold")
 box_text_font = ("Arial", 10)
 
+def ouvrir_un_quiz():
+    root.withdraw()  # Cache la fenêtre principale, mais ne la détruit pas
+
+    # Création de la nouvelle fenêtre
+    root2 = tk.Toplevel()
+    root2.title("Quiz")
+    root2.geometry("800x600")
+    root2.configure(bg="white")
+
+    label = tk.Label(root2, text=" VEUILLEZ REJOINDRE UN QUIZ", font=header_font, bg="white", fg="white", background="black")
+    label.pack(pady=40)
+
+    label1 = tk.Label(root2, text="Entrez le code du quiz :", font=box_text_font, bg="white")
+    label1.pack(pady=10)
+
+    code_entry = tk.Entry(root2, font=box_text_font)
+    code_entry.pack(pady=10)
+
+    def revenir_accueil():
+        root2.destroy()     # Ferme la fenêtre du quiz
+        root.deiconify()    # Ré-affiche la fenêtre principale
+
+    bt_rejoindre = tk.Button(root2, text="Rejoindre", bg="black", fg="white", font=button_font)
+    bt_rejoindre.pack(pady=10)
+
+    bt_retour = tk.Button(root2, text="Retour", command=revenir_accueil, bg="black", fg="white", font=button_font)
+    bt_retour.pack(pady=20)
+
+
 
 def ouvrir_inscription():
     root.withdraw()  # Cache la fenêtre principale, mais ne la détruit pas
 
     # Création de la nouvelle fenêtre
-    root2 = tk.Toplevel()
-    root2.title("INSCRIPTION")
-    root2.geometry("800x600")
-    root2.configure(bg="white")
+    root3 = tk.Toplevel()
+    root3.title("INSCRIPTION")
+    root3.geometry("800x600")
+    root3.configure(bg="white")
 
-    label = tk.Label(root2, text="PAGE INSCRIPTION", font=header_font, bg="white")
+    label = tk.Label(root3, text="PAGE INSCRIPTION", font=header_font, bg="white")
     label.pack(pady=40)
 
-    label1 = tk.Label(root2, text="test test")
+    label1 = tk.Label(root3, text="test test")
     
 
-    commentaire = tk.Entry(root2,)
+    commentaire = tk.Entry(root3,)
     label1.pack(pady=1)
     commentaire.pack(pady=40)
 
     def revenir_accueil():
-        root2.destroy()     # Ferme la fenêtre d'inscription
+        root3.destroy()     # Ferme la fenêtre d'inscription
         root.deiconify()    # Ré-affiche la fenêtre principale
 
     
-    bt_envoyer = tk.Button(root2, text="Inscription", bg="black", fg="white", font=button_font)
+    bt_envoyer = tk.Button(root3, text="Inscription", bg="black", fg="white", font=button_font)
     bt_envoyer.pack(pady=10)
 
-    bt_retour = tk.Button(root2, text="Retour", command=revenir_accueil, bg="black", fg="white", font=button_font)
+    bt_retour = tk.Button(root3, text="Retour", command=revenir_accueil, bg="black", fg="white", font=button_font)
     bt_retour.pack(pady=20)
 
 
@@ -96,7 +125,7 @@ label_matiere_list.pack()
 # ----------------------
 # Bouton Rejoindre un Quiz
 # ----------------------
-btn_quiz = tk.Button(root, text="REJOINDRE\nUN QUIZ", bg="black", fg="white", font=button_font, padx=20, pady=10)
+btn_quiz = tk.Button(root, text="REJOINDRE\nUN QUIZ", bg="black", fg="white", font=button_font, padx=20, pady=10, command=ouvrir_un_quiz)
 btn_quiz.place(relx=0.5, rely=0.7, anchor="center")
 
 # ----------------------
