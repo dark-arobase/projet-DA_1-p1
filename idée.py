@@ -28,15 +28,25 @@ def ouvrir_inscription():
     label = tk.Label(root2, text="PAGE INSCRIPTION", font=header_font, bg="white")
     label.pack(pady=40)
 
-    commentaire = tk.Entry(root2)
+    label1 = tk.Label(root2, text="test test")
+    
+
+    commentaire = tk.Entry(root2,)
+    label1.pack(pady=1)
     commentaire.pack(pady=40)
 
     def revenir_accueil():
         root2.destroy()     # Ferme la fenêtre d'inscription
         root.deiconify()    # Ré-affiche la fenêtre principale
 
-    bt_retour = tk.Button(root2, text="RETOUR", command=revenir_accueil, bg="black", fg="white", font=button_font)
+    
+    bt_envoyer = tk.Button(root2, text="Inscription", bg="black", fg="white", font=button_font)
+    bt_envoyer.pack(pady=10)
+
+    bt_retour = tk.Button(root2, text="Retour", command=revenir_accueil, bg="black", fg="white", font=button_font)
     bt_retour.pack(pady=20)
+
+
 
 # ----------------------
 # En-tête (YUPPIQUIZ)
