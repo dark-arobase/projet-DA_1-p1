@@ -1,0 +1,12 @@
+{
+    "Email@gmail.com": {
+        "nom": "Batman",
+        "mot_de_passe": "Batman est gay",
+        "role": "joueur"
+    },
+    "b": {
+        "nom": "a",
+        "mot_de_passe": "c",
+        "role": "createur"
+    }
+}
