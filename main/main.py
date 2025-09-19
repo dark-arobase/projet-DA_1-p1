@@ -1,5 +1,8 @@
 import tkinter as tk
 from tkinter import ttk
+from PIL import Image, ImageTk
+import connection
+import inscription
 
 # Fenêtre principale
 root = tk.Tk()
@@ -7,6 +10,13 @@ root.title("Yuppiquiz")
 root.geometry("500x500")
 root.configure(bg="black")
 
+# Charger et afficher une image
+img = Image.open("main/img/pattern.png")  # Assure-toi que le chemin est bon)
+photo = ImageTk.PhotoImage(img)
+
+img_label = tk.Label(root, image=photo, bg="black")
+img_label.image = photo  # Nécessaire pour empêcher le garbage collection
+img_label.pack()
 
 # ----------------------
 # Styles personnalisés
@@ -15,7 +25,6 @@ header_font = ("Arial", 24, "bold")
 button_font = ("Arial", 10, "bold")
 box_title_font = ("Arial", 12, "bold")
 box_text_font = ("Arial", 10)
-
 
 def ouvrir_inscription():
     root.withdraw()  # Cache la fenêtre principale, mais ne la détruit pas
@@ -64,29 +73,46 @@ def ouvrir_connexion():
         root.deiconify()    
     bt_retour = tk.Button(root3, text="Retour", command=revenir_accueil, bg="black", fg="white", font=button_font)
     bt_retour.pack(pady=20)
+#---------------------------
+'''frame_accueil = tk.Frame(root, bg="black")
+connection.frame_accueil = frame_accueil
+inscription.frame_accueil = frame_accueil
 
 
-# ----------------------
-# En-tête (YUPPIQUIZ)
-# ----------------------
-header_line = tk.Label(root, text="BIENVENUE", bg="black", fg="white", font=header_font)
-header_line.place(relx=0.5, rely=0.05, anchor="center")
-# ----------------------#
-# AU CENTRE #
-# ----------------------#
-header = tk.Label(root, text="YUPPIQUIZ", bg="black", fg="white", font=header_font)
-header.place(relx=0.5, rely=0.3, anchor="center")
+# Initialise les modules avec la fenêtre root
+connection.set_root(root)
+inscription.set_root(root)
 
-# ----------------------
-# Boutons haut : Inscription et Connexion
-# ----------------------
-btn_inscription = tk.Button(root, text="INSCRIPTION", bg="black", fg="white", font=button_font, padx=10, pady=5, command=ouvrir_inscription)
-btn_inscription.place(relx=0.01, y=20)
+frame_connexion = connection.creer_connexion()
+frame_inscription = inscription.creer_inscription()
 
-btn_connexion = tk.Button(root, text="SE CONNECTER", bg="black", fg="white", font=button_font, padx=10, pady=5, command=ouvrir_connexion)
-btn_connexion.place(relx=0.92, y=20)
+# Afficher la page d'accueil par défaut
+frame_accueil.pack(fill="both", expand=True)'''
 
-# ----------------------
-# Boucle principale
-# ----------------------
+#---------------------------..
+
+# Créer un rectangle (frame) centré
+frame = tk.Frame(root, width=320, height=360, bg="black", highlightthickness=2, highlightbackground="white")
+frame.place(relx=0.5, rely=0.5, anchor=tk.CENTER)
+
+# Ajouter une phrase dans le rectangle
+label_title = tk.Label(frame, text="Bienvenue sur Yuppiquiz !", bg="black", fg="white", font=("Arial", 14, "bold"))
+label_title.pack(pady=(30, 10))
+
+label_desc = tk.Label(frame, text="Testez vos connaissances et amusez-vous.", bg="black", fg="white", font=("Arial", 11))
+label_desc.pack(pady=(0, 30))
+
+# Ajouter des boutons dans le rectangle
+btn_inscription = tk.Button(frame, text="INSCRIPTION", bg="white", fg="black", font=("Arial", 12, "bold"),command=ouvrir_inscription)
+btn_inscription.pack(pady=10)
+
+btn_connexion = tk.Button(frame, text="SE CONNECTER", bg="white", fg="black", font=("Arial", 12, "bold"),command=ouvrir_connexion)
+btn_connexion.pack(pady=10)
+
+
+# Exemple de bouton à l'extérieur du rectangle (frame)
+btn_exterieur = tk.Button(root, text="Bouton extérieur", bg="white", fg="black", font=("Arial", 12, "bold"))
+btn_exterieur.place(x=0, y=0)  # Position absolue (x, y) dans la fenêtre principale
+    
+
 root.mainloop()
