@@ -1,5 +1,5 @@
 class Quiz:
-    def __init__(self, titre:str, id:int, date_creation:str):
+    def __init__(self, titre:str, id:int, date_creation:str, question, reponse):
         self.titre=titre
         self.id=id
         self.date_creation=date_creation
@@ -8,17 +8,23 @@ class Quiz:
     
     def ajoutquestion(self, question):
         question=input("Ecrire ta question ici :\n")
-        a=Question(question)
         choix=[]
         for i in range(4):
              b=input("choix :")
-             choix.append(a)
-        self.question.append(question, choix)
+             choix.append(b)
+        a=Question(question, choix)
+        self.question.append(a)
     
     def ajoutreponse(self, reponse):
         reponse=input("Ecrire la reponse ici:\n")
         b=Reponse(reponse)
-        self.reponse.append(reponse)
+        self.reponse.append(b)
+    
+    def getreponse(self, x):
+        index=self.question.index(x)
+        r=self.reponse[index]
+        return r
+
 
 class Question:
     def __init__(self, p:str, choix):
