@@ -1,5 +1,6 @@
 import tkinter as tk
 from tkinter import ttk
+import csv
 
 # Fenêtre principale
 root = tk.Tk()
@@ -56,20 +57,63 @@ def ouvrir_inscription():
 
     label = tk.Label(root3, text="PAGE INSCRIPTION", font=header_font, bg="white")
     label.pack(pady=40)
-
-    label1 = tk.Label(root3, text="test test")
     
 
-    commentaire = tk.Entry(root3,)
-    label1.pack(pady=1)
-    commentaire.pack(pady=40)
+    # Frame pour le champ Nom
+    frame_nom = tk.Frame(root3, bg="white")
+    frame_nom.pack(pady=10)
+    label_nom = tk.Label(frame_nom, text="Nom :", font=box_text_font, bg="white")
+    label_nom.pack(side="left", padx=(0, 10))
+    commentaire = tk.Entry(frame_nom, font=box_text_font)
+    commentaire.pack(side="left")
+
+    # Frame pour le champ Mot de passe
+    frame_mdp = tk.Frame(root3, bg="white")
+    frame_mdp.pack(pady=10)
+    label_nom2 = tk.Label(frame_mdp, text="Nouveau mot de passe :", font=box_text_font, bg="white")
+    label_nom2.pack(side="left", padx=(0, 10))
+    nmdp = tk.Entry(frame_mdp, font=box_text_font, show="*")
+    nmdp.pack(side="left")
+
+    # Frame pour le champ Confirmation mot de passe
+    frame_rmdp = tk.Frame(root3, bg="white")
+    frame_rmdp.pack(pady=10)
+    label_nom3 = tk.Label(frame_rmdp, text="Retaper le mot de passe :", font=box_text_font, bg="white")
+    label_nom3.pack(side="left", padx=(0, 10))
+    rmdp = tk.Entry(frame_rmdp, font=box_text_font, show="*")
+    rmdp.pack(side="left")
+
+    # Label pour afficher les messages d'erreur ou de succès
+    label_message = tk.Label(root3, text="", font=box_text_font, fg="red", bg="white")
+    label_message.pack(pady=5)
 
     def revenir_accueil():
         root3.destroy()     # Ferme la fenêtre d'inscription
         root.deiconify()    # Ré-affiche la fenêtre principale
 
+    def enrigistedonner():
+        #Récupere les information de l'utilisateur
+        nom = commentaire.get()  
+        mdp = nmdp.get()         
+        remdp = rmdp.get()       
+        if nom.strip() and mdp.strip() and remdp.strip():  # Vérifie que tous les champs sont remplis
+            if mdp == remdp:  # Vérifie que les deux mots de passe sont identiques
+                with open("BasedeDonnee.csv", "a", newline="", encoding="utf-8") as f:
+                    writer = csv.writer(f)
+                    writer.writerow([nom, mdp])  # Enregistre les trois valeurs
+
+                #Vide les case aprés l'ajout des compte
+                commentaire.delete(0, tk.END)  
+                nmdp.delete(0, tk.END)         
+                rmdp.delete(0, tk.END)         
+                label_message.config(text="Inscription réussie !", fg="green")
+            else:
+                label_message.config(text="Les mots de passe ne correspondent pas.", fg="red")
+        else:
+            label_message.config(text="Veuillez remplir tous les champs.", fg="red")
     
-    bt_envoyer = tk.Button(root3, text="Inscription", bg="black", fg="white", font=button_font)
+
+    bt_envoyer = tk.Button(root3, text="Inscription", bg="black", fg="white", font=button_font, command=enrigistedonner)
     bt_envoyer.pack(pady=10)
 
     bt_retour = tk.Button(root3, text="Retour", command=revenir_accueil, bg="black", fg="white", font=button_font)
