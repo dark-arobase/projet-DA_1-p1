@@ -17,6 +17,8 @@ def creer_inscription(root, retour=None):
     def valider_inscription():
         print("Nom :", entry_nom.get())
         print("Email :", entry_email.get())
+        with open("main/data/BasedeDonnee.csv", "a", encoding="utf-8") as f:
+            f.write(f"{entry_nom.get()},{entry_email.get()}\n")
 
     tk.Button(frame, text="Inscription", command=valider_inscription,
               bg="black", fg="white", font=("Arial", 12, "bold")).pack(pady=20)
