@@ -1,44 +1,41 @@
 import tkinter as tk
 
-root = None
-frame_inscription = None
-frame_accueil = None
+def creer_inscription(root, retour=None):
+    """Crée la frame inscription."""
+    frame = tk.Frame(root, bg="black")
 
-def set_root(r):
-    global root
-    root = r
+    tk.Label(frame, text="PAGE INSCRIPTION", font=("Arial", 24, "bold"), bg="black", fg="white").pack(pady=40)
 
-def set_accueil(f_accueil):
-    global frame_accueil
-    frame_accueil = f_accueil
+    tk.Label(frame, text="Nom :", bg="black", font=("Arial", 12), fg="white").pack(pady=5)
+    entry_nom = tk.Entry(frame, font=("Arial", 12))
+    entry_nom.pack(pady=5)
 
-def creer_inscription():
-    global frame_inscription
-    frame_inscription = tk.Frame(root, bg="white")
+    tk.Label(frame, text="Email :", bg="black", font=("Arial", 12), fg="white").pack(pady=5)
+    entry_email = tk.Entry(frame, font=("Arial", 12))
+    entry_email.pack(pady=5)
 
-    label = tk.Label(frame_inscription, text="PAGE INSCRIPTION", font=("Arial", 24, "bold"), bg="white")
-    label.pack(pady=40)
+    def valider_inscription():
+        print("Nom :", entry_nom.get())
+        print("Email :", entry_email.get())
 
-    label1 = tk.Label(frame_inscription, text="Test inscription", bg="white")
-    label1.pack(pady=5)
+    tk.Button(frame, text="Inscription", command=valider_inscription,
+              bg="black", fg="white", font=("Arial", 12, "bold")).pack(pady=20)
 
-    commentaire = tk.Entry(frame_inscription)
-    commentaire.pack(pady=20)
+    if retour:
+        tk.Button(frame, text="Retour",
+                  command=lambda: changer_page(frame, retour),
+                  bg="black", fg="white", font=("Arial", 12, "bold")).pack(pady=10)
 
-    btn_envoyer = tk.Button(frame_inscription, text="Inscription", bg="black", fg="white", font=("Arial", 10, "bold"))
-    btn_envoyer.pack(pady=10)
+    return frame
 
-    btn_retour = tk.Button(frame_inscription, text="Retour à l'accueil", bg="black", fg="white", font=("Arial", 10, "bold"), command=montrer_accueil)
-    btn_retour.pack(pady=20)
+def changer_page(frame_actuel, frame_suivant):
+    frame_actuel.pack_forget()
+    frame_suivant.pack(fill="both", expand=True)
 
-    return frame_inscription
-
-def montrer_inscription():
-    frame_accueil.pack_forget()
-    if frame_inscription:
-        frame_inscription.pack(fill="both", expand=True)
-
-def montrer_accueil():
-    if frame_inscription:
-        frame_inscription.pack_forget()
-    frame_accueil.pack(fill="both", expand=True)
+# Mode test autonome
+if __name__ == "__main__":
+    root = tk.Tk()
+    root.geometry("800x600")
+    frame = creer_inscription(root)
+    frame.pack(fill="both", expand=True)
+    root.mainloop()

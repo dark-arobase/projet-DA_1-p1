@@ -1,22 +1,30 @@
 import tkinter as tk
-from tkinter import ttk
-from PIL import Image, ImageTk
-import connection
-import inscription
-# connection.py
 
+def creer_connexion(root, retour=None):
+    """Crée la frame connexion."""
+    frame = tk.Frame(root, bg="black")
 
-def creer_connexion(root, retour_accueil):
-    frame = tk.Frame(root, bg="white")
+    tk.Label(frame, text="PAGE CONNEXION", font=("Arial", 24, "bold"), bg="black", fg="white").pack(pady=40)
 
-    titre = tk.Label(frame, text="PAGE CONNEXION", font=("Arial", 24, "bold"), bg="white")
-    titre.pack(pady=40)
+    tk.Label(frame, text="Nom d'utilisateur :", bg="black", font=("Arial", 12), fg="white").pack(pady=5)
+    entry_nom = tk.Entry(frame, font=("Arial", 12))
+    entry_nom.pack(pady=5)
 
-    entry_nom = tk.Entry(frame)
-    entry_nom.pack(pady=10)
+    tk.Label(frame, text="Mot de passe :", bg="black", font=("Arial", 12), fg="white").pack(pady=5)
+    entry_mdp = tk.Entry(frame, show="*", font=("Arial", 12))
+    entry_mdp.pack(pady=5)
 
-    bouton_retour = tk.Button(frame, text="Retour", command=lambda: changer_page(frame, retour_accueil), bg="black", fg="white")
-    bouton_retour.pack(pady=20)
+    def valider_connexion():
+        print("Utilisateur :", entry_nom.get())
+        print("Mot de passe :", entry_mdp.get())
+
+    tk.Button(frame, text="Connexion", command=valider_connexion,
+              bg="black", fg="white", font=("Arial", 12, "bold")).pack(pady=20)
+
+    if retour:
+        tk.Button(frame, text="Retour",
+                  command=lambda: changer_page(frame, retour),
+                  bg="black", fg="white", font=("Arial", 12, "bold")).pack(pady=10)
 
     return frame
 
@@ -24,24 +32,10 @@ def changer_page(frame_actuel, frame_suivant):
     frame_actuel.pack_forget()
     frame_suivant.pack(fill="both", expand=True)
 
-
-
-
-'''
-def ouvrir_connexion():
-    root.withdraw() 
-
-    # Création de la nouvelle fenêtre
-    root3 = tk.Toplevel()
-    root3.title("CONNEXION")
-    root3.geometry("800x600")
-    root3.configure(bg="white")
-
-    label = tk.Label(root3, text="PAGE CONNEXION", font=header_font, bg="white")
-    label.pack(pady=40)
-
-    def revenir_accueil():
-        root3.destroy()     
-        root.deiconify()    
-    bt_retour = tk.Button(root3, text="Retour", command=revenir_accueil, bg="black", fg="white", font=button_font)
-    bt_retour.pack(pady=20)'''
+# Mode test autonome
+if __name__ == "__main__":
+    root = tk.Tk()
+    root.geometry("800x600")
+    frame = creer_connexion(root)
+    frame.pack(fill="both", expand=True)
+    root.mainloop()
