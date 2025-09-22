@@ -4,4 +4,6 @@ class Utilisateur:
         self.nom=nom
         self.email=email
         self._mdp=mdp
+    def getmdp(self):
+        return self._mdp
     

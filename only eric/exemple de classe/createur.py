@@ -54,13 +54,48 @@ class createur(Utilisateur):
         "Que choisissez-vous? "))
 
         if option==1:
-             pass
+            with open("quiz.json", r, encoding="utf-8") as f:
+                data=json.load(f)
+            id_quiz=input(int("Entrez l'id du quiz a modifier :"))
+            for element in data:
+                 if element["id"]==id_quiz:
+                      n=input(int("nombre de questions a ajouter :"))
+                      for j in range(n):
+                          question=input(str("Entrez la question: "))
+                          choix=input(list("Entrez les choix de reponse: "))
+                          reponse=input(str("Entrez la reponse correcte: "))
+                          new_question={
+                              "question":question,
+                              "choix":choix,
+                              "reponse":reponse
+                          }
+                          element["questions"].append(new_question)
         if option ==2:
-             pass
+             id_quiz=input(int("Entrez l'id du quiz a modifier :"))
+             with open("quiz.json", r, encoding="utf-8") as f:
+                 data=json.load(f)
+             for element in data:
+                 if element["id"]==id_quiz:
+                     n=input(int("nombre de questions a supprimer :"))
+                     for j in range(n):
+                         question=input(str("Entrez la question a supprimer: "))
+                         for q in element["questions"]:
+                             if q["question"]==question:
+                                 element["questions"].remove(q)
         if option==3:
-             pass
-             
-    
+             id_quiz=input(int("Entrez l'id du quiz a modifier :"))
+             with open("quiz.json", r, encoding="utf-8") as f:
+                 data=json.load(f)
+             for element in data:
+                 if element["id"]==id_quiz:
+                     n=input(int("nombre de reponses a changer :"))
+                     for j in range(n):
+                         question=input(str("Entrez la question dont vous voulez changer la reponse: "))
+                         for q in element["questions"]:
+                             if q["question"]==question:
+                                 nouvelle_reponse=input(str("Entrez la nouvelle reponse: "))
+                                 q["reponse"]=nouvelle_reponse
+                                 break
 
     def supprimerquiz(self):
         id_quiz=input(int("Entrez l'id du quiz a supprimer :"))
