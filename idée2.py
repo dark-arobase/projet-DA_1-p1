@@ -1,10 +1,11 @@
 import tkinter as tk
 
-# Créer la fenêtre principale
-root = tk.Tk()
-root.title("Yuppiquiz - Admin")
-root.geometry("800x600")
-root.configure(bg="white")
+
+def afficher_message():
+    root = tk.Tk()
+    root.title("Yuppiquiz - Admin")
+    root.geometry("800x600")
+    root.configure(bg="white")
 
 # --------------------
 # Styles
@@ -67,3 +68,7 @@ btn_hoster.grid(row=1, column=1, padx=30, pady=20)
 # Lancer l'application
 # --------------------
 root.mainloop()
+
+    
+
+# Créer la fenêtre principale
