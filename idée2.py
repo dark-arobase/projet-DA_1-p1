@@ -5,7 +5,7 @@ def ouvrir_admin(nom_utilisateur):
     root = tk.Toplevel()
     root.title("Yuppiquiz - Admin")
     root.geometry("800x600")
-    root.configure(bg="white")
+    root.configure(bg="black")
 
     # Styles
     nav_font = ("Arial", 10, "bold")
@@ -16,7 +16,7 @@ def ouvrir_admin(nom_utilisateur):
     box_text_font = ("Arial", 10)
 
     # Barre de navigation
-    nav_frame = tk.Frame(root, bg="white")
+    nav_frame = tk.Frame(root, bg="black")
     nav_frame.pack(fill="x", pady=10)
 
     btn_accueil = tk.Button(nav_frame, text="Accueil", bg="black", fg="white", font=nav_font, padx=10, pady=5)
@@ -34,10 +34,10 @@ def ouvrir_admin(nom_utilisateur):
     user_icon = tk.Label(nav_frame, text="👤", font=("Arial", 12))
     user_icon.pack(side="right", padx=5)
 
-    separator = tk.Frame(root, bg="black", height=2)
+    separator = tk.Frame(root, bg="white", height=2)
     separator.pack(fill="x", padx=5, pady=5)
 
-    center_frame = tk.Frame(root, bg="white")
+    center_frame = tk.Frame(root, bg="black")
     center_frame.pack(pady=50)
 
     btn_creer = tk.Button(center_frame, text="Créé votre quiz", bg="black", fg="white", font=main_button_font, padx=20, pady=10)
