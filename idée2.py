@@ -1,7 +1,7 @@
 import tkinter as tk
 
 
-def ouvrir_admin():
+def ouvrir_admin(nom_utilisateur):
     root = tk.Toplevel()
     root.title("Yuppiquiz - Admin")
     root.geometry("800x600")
@@ -28,7 +28,7 @@ def ouvrir_admin():
     btn_mode_utilisateur = tk.Button(nav_frame, text="Mode utilisateur", bg="black", fg="white", font=nav_font, padx=10, pady=5)
     btn_mode_utilisateur.pack(side="left", padx=10)
 
-    user_label = tk.Label(nav_frame, text="Nom utilisateur (admin)", font=nav_font, bg="white", fg="black")
+    user_label = tk.Label(nav_frame, text=f"{nom_utilisateur} (admin)", font=nav_font, bg="white", fg="black")
     user_label.pack(side="right", padx=5)
 
     user_icon = tk.Label(nav_frame, text="👤", font=("Arial", 12))
