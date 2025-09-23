@@ -1,6 +1,7 @@
 import tkinter as tk
 from tkinter import ttk
 import csv
+from idée2 import ouvrir_admin
 
 # Fenêtre principale
 root = tk.Tk()
@@ -193,6 +194,8 @@ def ouvrir_Connexion():
                             break
                 if trouve:
                     label_message.config(text="Connexion réussie !", fg="green")
+                    ouvrir_admin()
+                    root4.destroy()  # Ferme la fenêtre de connexion
                     # Ici tu peux ajouter la suite de la connexion
                 else:
                     label_message.config(text="Identifiants incorrects.", fg="red")
