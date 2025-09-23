@@ -12,7 +12,9 @@ root.configure(bg="white")
 nav_font = ("Arial", 10, "bold")
 button_font = ("Arial", 10, "bold")
 main_button_font = ("Arial", 11, "bold")
-
+header_font = ("Arial", 24, "bold")
+box_title_font = ("Arial", 12, "bold")
+box_text_font = ("Arial", 10)
 # --------------------
 # Barre de navigation
 # --------------------
@@ -56,12 +58,72 @@ btn_creer.grid(row=0, column=0, padx=30, pady=20)
 btn_modifier = tk.Button(center_frame, text="Modification d’un\nquiz", bg="black", fg="white", font=main_button_font, padx=20, pady=10)
 btn_modifier.grid(row=0, column=1, padx=30, pady=20)
 
+
+def explorer__quiz():
+    root.withdraw()  # Cache la fenêtre principale, mais ne la détruit pas
+
+    # Création de la nouvelle fenêtre
+    root2 = tk.Toplevel()
+    root2.title("Quiz")
+    root2.geometry("800x600")
+    root2.configure(bg="black")
+
+    label = tk.Label(root2, text=" VEUILLEZ REJOINDRE UN QUIZ", font=header_font, bg="black", fg="white")
+    label.pack(pady=40)
+
+    label1 = tk.Label(root2, text="Entrez le code du quiz :", font=box_text_font, bg="black", fg="white")
+    label1.pack(pady=10)
+
+    
+
+    def revenir_accueil():
+        root2.destroy()     # Ferme la fenêtre du quiz
+        root.deiconify()    # Ré-affiche la fenêtre principale
+
+    bt_rejoindre = tk.Button(root2, text="Rejoindre", bg="black", fg="white", font=button_font)
+    bt_rejoindre.pack(pady=10)
+    bt_retour = tk.Button(root2, text="Retour", command=revenir_accueil, bg="black", fg="white", font=button_font)
+    bt_retour.pack(pady=20)
+
+
 # Ligne 2 : Explorer + Hoster
-btn_explorer_quiz = tk.Button(center_frame, text="Explorer d’autre quiz", bg="black", fg="white", font=main_button_font, padx=20, pady=10)
+btn_explorer_quiz = tk.Button(center_frame, text="Explorer d’autre quiz", bg="black", fg="white", font=main_button_font, padx=20, pady=10, command=explorer__quiz)
 btn_explorer_quiz.grid(row=1, column=0, padx=30, pady=20)
 
 btn_hoster = tk.Button(center_frame, text="Hoster votre quiz", bg="black", fg="white", font=main_button_font, padx=20, pady=10)
 btn_hoster.grid(row=1, column=1, padx=30, pady=20)
+
+def ouvrir_un_quiz():
+    root.withdraw()  # Cache la fenêtre principale, mais ne la détruit pas
+
+    # Création de la nouvelle fenêtre
+    root2 = tk.Toplevel()
+    root2.title("Quiz")
+    root2.geometry("800x600")
+    root2.configure(bg="white")
+
+    label = tk.Label(root2, text=" VEUILLEZ REJOINDRE UN QUIZ", font=header_font, bg="white", fg="white", background="black")
+    label.pack(pady=40)
+
+    label1 = tk.Label(root2, text="Entrez le code du quiz :", font=box_text_font, bg="white")
+    label1.pack(pady=10)
+
+    code_entry = tk.Entry(root2, font=box_text_font)
+    code_entry.pack(pady=10)
+
+    def revenir_accueil():
+        root2.destroy()     # Ferme la fenêtre du quiz
+        root.deiconify()    # Ré-affiche la fenêtre principale
+
+    bt_rejoindre = tk.Button(root2, text="Rejoindre", bg="black", fg="white", font=button_font)
+    bt_rejoindre.pack(pady=10)
+
+    bt_retour = tk.Button(root2, text="Retour", command=revenir_accueil, bg="black", fg="white", font=button_font)
+    bt_retour.pack(pady=20)
+
+
+
+
 
 # --------------------
 # Lancer l'application
