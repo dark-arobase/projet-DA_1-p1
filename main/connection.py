@@ -1,43 +1,23 @@
 import tkinter as tk
 import os
+import acceuil
 
-def creer_accueil(root, nom_utilisateur):
-    """Crée la frame accueil avec message de bienvenue."""
-    frame_accueil = tk.Frame(root, bg="black")
-    root.title("Page d'accueil")
 
-    bienvenue = tk.Label(frame_accueil, text=f"Bienvenue, {nom_utilisateur} !",
-                        font=("Arial", 24, "bold"), fg="white", bg="black")
-    bienvenue.pack(pady=50)
-
-    # Bouton pour revenir à la connexion (déconnexion)
-    def retour_connexion():
-        frame_accueil.pack_forget()
-        frame_connexion.pack(fill="both", expand=True)
-        root.title("Connexion")
-
-    btn_deconnexion = tk.Button(frame_accueil, text="Déconnexion", 
-                               command=retour_connexion,
-                               bg="white", fg="black", font=("Arial", 12, "bold"))
-    btn_deconnexion.pack(pady=20)
-
-    return frame_accueil
-
-def creer_connexion(root, retour=None):
-    """Crée la frame connexion."""
-    root.title("Connexion")
+def connexion_utilisateur(root, retour=None):
+    """Crée la frame de connexion utilisateur."""
     frame = tk.Frame(root, bg="black")
-
+    root.title("Connexion")
     box_text_font = ("Arial", 12)
 
-    tk.Label(frame, text="PAGE CONNEXION", font=("Arial", 24, "bold"), bg="black", fg="white").pack(pady=40)
+    tk.Label(frame, text="PAGE CONNEXION", font=("Arial", 24, "bold"),
+             bg="black", fg="white").pack(pady=40)
 
     # Champ Nom
     tk.Label(frame, text="Nom d'utilisateur :", bg="black", font=box_text_font, fg="white").pack(pady=5)
     entry_nom = tk.Entry(frame, font=box_text_font)
     entry_nom.pack(pady=5)
 
-    # Champ Email (optionnel ici)
+    # Champ Email
     tk.Label(frame, text="Email :", bg="black", font=box_text_font, fg="white").pack(pady=5)
     entry_email = tk.Entry(frame, font=box_text_font)
     entry_email.pack(pady=5)
@@ -53,9 +33,10 @@ def creer_connexion(root, retour=None):
 
     def valider_connexion():
         nom = entry_nom.get().strip()
+        email = entry_email.get().strip()
         mdp = entry_mdp.get().strip()
 
-        if not nom or not mdp:
+        if not nom or not email or not mdp:
             label_message.config(text="Veuillez remplir tous les champs.", fg="red")
             return
 
@@ -70,27 +51,22 @@ def creer_connexion(root, retour=None):
                 parts = ligne.strip().split(",")
                 if len(parts) < 3:
                     continue
-                nom_enr, email_enr, mdp_enr = parts
-                if nom == nom_enr and mdp == mdp_enr:
+                nom_enr, email_enr, mdp_enr = parts[:3]
+                if nom == nom_enr and email == email_enr and mdp == mdp_enr:
                     success = True
                     break
 
         if success:
             label_message.config(text="Connexion réussie !", fg="green")
-            # Cache frame connexion
-            frame.pack_forget()
-            # Crée et affiche la frame accueil
-            global frame_accueil
-            frame_accueil = creer_accueil(root, nom)
-            frame_accueil.pack(fill="both", expand=True)
+            frame.after(1000, lambda: changer_page(frame, acceuil.creer_accueil_utilisateur(root, retour=frame)))
         else:
-            label_message.config(text="Nom ou mot de passe incorrect.", fg="red")
+            label_message.config(text="Nom, Email ou mot de passe incorrect.", fg="red")
 
     # Bouton Connexion
     tk.Button(frame, text="Connexion", command=valider_connexion,
               bg="white", fg="black", font=("Arial", 12, "bold")).pack(pady=20)
 
-    # Bouton Retour (si besoin)
+    # Bouton Retour
     if retour:
         tk.Button(frame, text="Retour",
                   command=lambda: changer_page(frame, retour),
@@ -98,15 +74,17 @@ def creer_connexion(root, retour=None):
 
     return frame
 
+
 def changer_page(frame_actuel, frame_suivant):
     frame_actuel.pack_forget()
     frame_suivant.pack(fill="both", expand=True)
+
 
 # Mode test autonome
 if __name__ == "__main__":
     root = tk.Tk()
     root.geometry("800x600")
     root.configure(bg="black")
-    frame_connexion = creer_connexion(root)
+    frame_connexion = connexion_utilisateur(root)
     frame_connexion.pack(fill="both", expand=True)
     root.mainloop()

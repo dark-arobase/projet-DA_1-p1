@@ -18,8 +18,6 @@ box_title_font = ("Arial", 12, "bold")
 box_text_font = ("Arial", 10)
 
 
-
-
 def ouvrir_inscription():
     root.withdraw()  # Cache la fenêtre principale, mais ne la détruit pas
 

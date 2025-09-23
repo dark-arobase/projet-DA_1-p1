@@ -52,7 +52,7 @@ tk.Button(frame_centre, text="SE CONNECTER",
 # Créer frames via modules
 # -------------------
 frame_inscription = inscription.creer_inscription(root, retour=frame_accueil)
-frame_connexion = connection.creer_connexion(root, retour=frame_accueil)
+frame_connexion = connection.connexion_utilisateur(root, retour=frame_accueil)
 
 # -------------------
 # Lancer sur la page accueil
