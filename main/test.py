@@ -1,6 +1,6 @@
 import tkinter as tk
 from tkinter import ttk
-from PIL import Image, ImageTk
+#from PIL import Image, ImageTk
 import connection
 import inscription
 
@@ -11,12 +11,12 @@ root.geometry("500x500")
 root.configure(bg="black")
 
 # Charger et afficher une image
-img = Image.open("main/img/pattern.png")  # Assure-toi que le chemin est bon)
+'''img = Image.open("main/img/pattern.png")  # Assure-toi que le chemin est bon)
 photo = ImageTk.PhotoImage(img)
 
 img_label = tk.Label(root, image=photo, bg="black")
 img_label.image = photo  # Nécessaire pour empêcher le garbage collection
-img_label.pack()
+img_label.pack()'''
 
 # ----------------------
 # Styles personnalisés
