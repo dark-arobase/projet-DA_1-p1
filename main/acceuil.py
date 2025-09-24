@@ -1,5 +1,31 @@
 import tkinter as tk
 
+def page_explorer_quiz(root, retour_frame):
+    """Page Explorer d’autre quiz"""
+    frame_quiz = tk.Frame(root, bg="black")
+
+    header_font = ("Arial", 20, "bold")
+    box_text_font = ("Arial", 14)
+
+    label = tk.Label(frame_quiz, text="VEUILLEZ REJOINDRE UN QUIZ",
+                     font=header_font, bg="black", fg="white")
+    label.pack(pady=40)
+
+    label1 = tk.Label(frame_quiz, text="Entrez le code du quiz :",
+                      font=box_text_font, bg="black", fg="white")
+    label1.pack(pady=10)
+
+    # Bouton retour vers la frame d'accueil
+    def retour():
+        frame_quiz.pack_forget()
+        retour_frame.pack(fill="both", expand=True)
+
+    tk.Button(frame_quiz, text="Retour", command=retour,
+              bg="red", fg="white", font=("Arial", 12, "bold")).pack(pady=20)
+
+    return frame_quiz
+
+
 def creer_accueil_utilisateur(root, nom, retour=None):
     frame = tk.Frame(root, bg="white")
 
@@ -9,7 +35,6 @@ def creer_accueil_utilisateur(root, nom, retour=None):
     navbar = tk.Frame(frame, bg="black", height=50)
     navbar.pack(fill="x")
 
-    # Boutons de navigation (non fonctionnels ici)
     def on_nav_click(name):
         print(f"Navigation : {name}")
 
@@ -45,15 +70,20 @@ def creer_accueil_utilisateur(root, nom, retour=None):
     def on_main_button_click(name):
         print(f"Action : {name}")
 
+    def open_explorer():
+        frame.pack_forget()  # cacher accueil
+        quiz_frame = page_explorer_quiz(root, frame)
+        quiz_frame.pack(fill="both", expand=True)
+
     actions = [
-        ("Créé votre quiz", 0, 0),
-        ("Modification d’un quiz", 0, 1),
-        ("Explorer d’autre quiz", 1, 0),
-        ("Hoster votre quiz", 1, 1)
+        ("Créé votre quiz", 0, 0, lambda: on_main_button_click("Créé votre quiz")),
+        ("Modification d’un quiz", 0, 1, lambda: on_main_button_click("Modification")),
+        ("Explorer d’autre quiz", 1, 0, open_explorer),
+        ("Hoster votre quiz", 1, 1, lambda: on_main_button_click("Hoster")),
     ]
 
-    for text, row, col in actions:
-        btn = tk.Button(main_frame, text=text, command=lambda t=text: on_main_button_click(t),
+    for text, row, col, cmd in actions:
+        btn = tk.Button(main_frame, text=text, command=cmd,
                         bg="black", fg="white", font=("Arial", 12, "bold"), width=20, height=3)
         btn.grid(row=row, column=col, padx=40, pady=30)
 
@@ -72,6 +102,7 @@ def creer_accueil_utilisateur(root, nom, retour=None):
                   bg="black", fg="white", font=("Arial", 12, "bold")).pack(pady=20)
 
     return frame
+
 
 # Mode test autonome
 if __name__ == "__main__":
