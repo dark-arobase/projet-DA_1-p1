@@ -1,12 +1,29 @@
-{ " Format Quiz":{
-    "id":"",
-    "titre":"titre du quiz",
-    "questions":[
-        {
-            "question":"",
-            "choix":[],
-            "reponse":""
-        }
-    ]
-}
-}
+[
+   {
+      "id": "1",
+      "date creation": "2025-09-24",
+      "titre": "Mathematique",
+      "questions": [
+         {
+            "question": "1+1",
+            "choix": [
+               "2",
+               "4",
+               "5",
+               "7"
+            ],
+            "reponse": "2"
+         },
+         {
+            "question": "5/3",
+            "choix": [
+               "infini",
+               "0",
+               "2",
+               "1.66"
+            ],
+            "reponse": "1.66"
+         }
+      ]
+   }
+]
