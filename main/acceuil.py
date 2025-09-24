@@ -42,7 +42,7 @@ def creer_accueil_utilisateur(root, nom, retour=None):
     # ------------------------------
     # CONTENU PRINCIPAL (BOUTONS)
     # ------------------------------
-    main_frame = tk.Frame(frame, bg="black")
+    main_frame = tk.Frame(frame)
     main_frame.pack(expand=True)
 
             
@@ -57,8 +57,8 @@ def creer_accueil_utilisateur(root, nom, retour=None):
 
     actions = [
         ("Créer votre quiz", 0, 0, lambda: changer_page(frame, crée_quiz.page_cree_quiz(root, nom, retour=frame))),
-        ("Modification d’un quiz", 0, 1, lambda: changer_page(frame, modification_quiz.page_modification_quiz(root, nom, retour=frame))),
-        ("Explorer d’autre quiz", 1, 0, lambda: changer_page(frame, explore_quiz.page_explorer_quiz(root, nom, retour=frame))),
+        ("Modification d’un quiz", 1, 0, lambda: changer_page(frame, modification_quiz.page_modification_quiz(root, nom, retour=frame))),
+        ("Explorer d’autres quiz", 2, 0, lambda: changer_page(frame, explore_quiz.page_explorer_quiz(root, nom, retour=frame))),
     ]
 
     for text, row, col, cmd in actions:
