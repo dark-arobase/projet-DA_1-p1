@@ -50,7 +50,7 @@ class createur(Utilisateur):
         option=input(int("Vous avez plusieurs option:\n" \
         "1. ajouter des questions\n" \
         "2. supprimer une question\n" \
-        "3.changer une reponse\n" \
+        "3. changer une reponse\n" \
         "Que choisissez-vous? "))
 
         if option==1:
