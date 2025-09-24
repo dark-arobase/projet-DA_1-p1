@@ -3,8 +3,12 @@ from main.classe.createur import CreerQuizFrame
 
 def creer_accueil_utilisateur(root, nom, retour=None):
     frame = tk.Frame(root, bg="white")
+<<<<<<< HEAD
     creer_quiz_frame = None  # Will hold the quiz creation frame
 
+=======
+    root.title("acceuil")
+>>>>>>> f07fa415d82faee425ec3a531651497a962bf43c
     # ------------------------------
     # BARRE DE NAVIGATION EN HAUT
     # ------------------------------
@@ -25,7 +29,11 @@ def creer_accueil_utilisateur(root, nom, retour=None):
     user_frame = tk.Frame(navbar, bg="black")
     user_frame.pack(side="right", padx=10)
 
+<<<<<<< HEAD
     user_label = tk.Label(user_frame, text="", fg="white", bg="black")
+=======
+    user_label = tk.Label(user_frame, text=f"{nom}, (admin)", fg="white", bg="black")
+>>>>>>> f07fa415d82faee425ec3a531651497a962bf43c
     user_label.pack(side="left", padx=5)
 
     avatar = tk.Canvas(user_frame, width=30, height=30, bg="black", highlightthickness=0)

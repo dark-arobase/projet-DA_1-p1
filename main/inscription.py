@@ -7,6 +7,11 @@ def creer_inscription(root, retour=None):
 
     box_text_font = ("Arial", 12)
 
+    '''# Frame centrale avec rectangle blanc
+    frame_centre = tk.Frame(frame, bg="black", width=350, height=430, highlightbackground="white",
+                        highlightthickness=2)
+    frame_centre.place(relx=0.5, rely=0.5, anchor="center")'''
+
     tk.Label(frame, text="PAGE INSCRIPTION", font=("Arial", 24, "bold"), bg="black", fg="white").pack(pady=40)
 
     tk.Label(frame, text="Nom d'utilisateur :", bg="black", font=box_text_font, fg="white").pack(pady=5)
@@ -52,7 +57,6 @@ def creer_inscription(root, retour=None):
 
     tk.Button(frame, text="Inscription", command=valider_inscription,
               bg="white", fg="black", font=("Arial", 12, "bold")).pack(pady=20)
-
     if retour:
         tk.Button(frame, text="Retour",
                   command=lambda: changer_page(frame, retour),

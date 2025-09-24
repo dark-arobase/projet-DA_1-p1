@@ -1,42 +1,65 @@
 import tkinter as tk
-from PIL import Image, ImageTk 
+from PIL import Image, ImageTk
 
-#pip install pillow
+import connection
+import inscription
 
-# Créer la fenêtre principale
+# -------------------
+# Fenêtre principale
+# -------------------
 root = tk.Tk()
 root.title("Yuppiquiz")
-root.geometry("600x600")
+root.geometry("800x600")
 root.configure(bg="black")
 
-# Charger et afficher une image
-img = Image.open("main/img/pattern.png")
+# -------------------
+# Image de fond
+# -------------------
+img = Image.open("main/img/pattern.png")  # Assure-toi que le chemin est bon
 photo = ImageTk.PhotoImage(img)
+
 img_label = tk.Label(root, image=photo, bg="black")
-img_label.image = photo  # Nécessaire pour empêcher le garbage collection
-img_label.pack()
+img_label.image = photo  # Prévention du garbage collection
+img_label.place(x=0, y=0, relwidth=1, relheight=1)  # L'image occupe tout l'écran
 
-# Créer un rectangle (frame) centré
-frame = tk.Frame(root, width=320, height=360, bg="black", highlightthickness=2, highlightbackground="white")
-frame.place(relx=0.5, rely=0.5, anchor=tk.CENTER)
-# Ajouter une phrase dans le rectangle
-label_title = tk.Label(frame, text="Bienvenue sur Yuppiquiz !", bg="black", fg="white", font=("Arial", 14, "bold"))
-label_title.pack(pady=(30, 10))
+# -------------------
+# Fonction pour basculer entre les frames
+# -------------------
+def afficher_frame(frame):
+    for f in (frame_accueil, frame_inscription, frame_connexion):
+        f.place_forget()
+    frame.place(relx=0.5, rely=0.5, anchor="center")
 
-label_desc = tk.Label(frame, text="Testez vos connaissances et amusez-vous.", bg="black", fg="white", font=("Arial", 11))
-label_desc.pack(pady=(0, 30))
+# -------------------
+# Frame ACCUEIL
+# -------------------
+frame_accueil = tk.Frame(root, width=400, height=400, bg="black", highlightthickness=2, highlightbackground="white")
 
-# Ajouter des boutons dans le rectangle
-btn_inscription = tk.Button(frame, text="INSCRIPTION", bg="white", fg="black", font=("Arial", 12, "bold"))
-btn_inscription.pack(pady=10)
+# Contenu du frame accueil
+tk.Label(frame_accueil, text="Bienvenue sur Yuppiquiz !", bg="black", fg="white",
+         font=("Arial", 18, "bold")).pack(pady=(40, 10))
 
-btn_connexion = tk.Button(frame, text="SE CONNECTER", bg="white", fg="black", font=("Arial", 12, "bold"))
-btn_connexion.pack(pady=10)
+tk.Label(frame_accueil, text="Testez vos connaissances et amusez-vous.", bg="black", fg="white",
+         font=("Arial", 12)).pack(pady=(0, 30))
 
-# Exemple de bouton à l'extérieur du rectangle (frame)
-btn_exterieur = tk.Button(root, text="Bouton extérieur", bg="white", fg="black", font=("Arial", 12, "bold"))
-btn_exterieur.place(x=0, y=0)  # Position absolue (x, y) dans la fenêtre principale
-    
+tk.Button(frame_accueil, text="INSCRIPTION", bg="white", fg="black", font=("Arial", 12, "bold"),
+          command=lambda: afficher_frame(frame_inscription)).pack(pady=10)
 
-# Boucle principale
+tk.Button(frame_accueil, text="SE CONNECTER", bg="white", fg="black", font=("Arial", 12, "bold"),
+          command=lambda: afficher_frame(frame_connexion)).pack(pady=10)
+
+# -------------------
+# Frames inscription et connexion
+# -------------------
+frame_inscription = inscription.creer_inscription(root, retour=frame_accueil)
+frame_connexion = connection.connexion_utilisateur(root, retour=frame_accueil)
+
+# -------------------
+# Afficher la page d'accueil au démarrage
+# -------------------
+afficher_frame(frame_accueil)
+
+# -------------------
+# Lancer la boucle
+# -------------------
 root.mainloop()
