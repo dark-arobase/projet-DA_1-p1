@@ -1,108 +1,98 @@
-from utlisateurs import Utilisateur
-from quiz import Question, Reponse, Quiz
+
+
+# Tkinter Frame for quiz creation (to use in your main app)
+import tkinter as tk
+from tkinter import messagebox
 import datetime
 import json
 
-#----------------------------------------------
-#Creation de la classe du createur de quiz
-class createur(Utilisateur):
-    def __init__(self, id:int, nom:str, email:str, mdp:str):
-        super().__init__(id, nom, email, mdp)
-        self.id=id
-        self.nom=nom
-        self.email=email
-        self._mdp=mdp
-           
+class CreerQuizFrame(tk.Frame):
+    def __init__(self, parent, retour=None, *args, **kwargs):
+        super().__init__(parent, bg="white", *args, **kwargs)
+        self.retour = retour
 
-    def creerQuiz(self, titre:str, nbr_question:int ): #le createur creer de nouveau quiz
-        t=input("Entrez le nom du quiz: ")
-        id=input("entrer le id: ")
-        date= datetime.date.today()
-        quiz=Quiz(t, id, date )
+        tk.Label(self, text="Création d'un Quiz", font=("Arial", 18, "bold"), fg="orange", bg="white").pack(pady=10)
 
-        print("Ajouter les questions dans le quiz\n")
-        i=input(int("nombre de questuions :"))
-        for j in range(i):
-            quiz.ajoutquestion(self)
-            quiz.ajoutreponse(self)
-        new_quiz={
-                            "id":quiz.id,
-                            "date creation":quiz.date_creation,
-                            "titre":quiz.titre,
-                            "questions":[
-                                {
-                                    "question": el.p,
-                                    "choix":el.choix,
-                                    "reponse":quiz.getreponse(el)
-                                } for el in quiz.question
-                            ]
-                        }    
+        form = tk.Frame(self, bg="white")
+        form.pack(pady=10)
 
-        with open("quiz.json", 'r', encoding="utf-8") as f: # le quiz est ajouter dans j.son pour la sauvegarde
-                data=json.load(f)
+        tk.Label(form, text="Titre du Quiz:", bg="white").grid(row=0, column=0, sticky="e")
+        self.entry_title = tk.Entry(form)
+        self.entry_title.grid(row=0, column=1, pady=5)
+
+        tk.Label(form, text="ID du Quiz:", bg="white").grid(row=1, column=0, sticky="e")
+        self.entry_id = tk.Entry(form)
+        self.entry_id.grid(row=1, column=1, pady=5)
+
+        tk.Label(form, text="Nombre de questions:", bg="white").grid(row=2, column=0, sticky="e")
+        self.entry_nq = tk.Entry(form)
+        self.entry_nq.grid(row=2, column=1, pady=5)
+
+        self.questions_frame = tk.Frame(self, bg="white")
+        self.questions_frame.pack(pady=10)
+
+        self.add_questions_btn = tk.Button(self, text="Ajouter les questions", command=self.add_questions, bg="blue", fg="white")
+        self.add_questions_btn.pack(pady=5)
+
+        self.save_btn = tk.Button(self, text="Enregistrer le quiz", command=self.save_quiz, bg="green", fg="white")
+        self.save_btn.pack(pady=10)
+
+        if self.retour:
+            tk.Button(self, text="Retour", command=self.retour, bg="gray", fg="white").pack(pady=5)
+
+        self.questions_entries = []
+
+    def add_questions(self):
+        for widget in self.questions_frame.winfo_children():
+            widget.destroy()
+        self.questions_entries.clear()
+        try:
+            n = int(self.entry_nq.get())
+        except ValueError:
+            messagebox.showerror("Erreur", "Veuillez entrer un nombre valide de questions.")
+            return
+        for i in range(n):
+            q_label = tk.Label(self.questions_frame, text=f"Question {i+1}:", bg="white")
+            q_label.grid(row=i*3, column=0, sticky="w")
+            q_entry = tk.Entry(self.questions_frame, width=40)
+            q_entry.grid(row=i*3, column=1)
+            choix_label = tk.Label(self.questions_frame, text="Choix (séparés par ;):", bg="white")
+            choix_label.grid(row=i*3+1, column=0, sticky="w")
+            choix_entry = tk.Entry(self.questions_frame, width=40)
+            choix_entry.grid(row=i*3+1, column=1)
+            rep_label = tk.Label(self.questions_frame, text="Réponse correcte:", bg="white")
+            rep_label.grid(row=i*3+2, column=0, sticky="w")
+            rep_entry = tk.Entry(self.questions_frame, width=40)
+            rep_entry.grid(row=i*3+2, column=1)
+            self.questions_entries.append((q_entry, choix_entry, rep_entry))
+
+    def save_quiz(self):
+        titre = self.entry_title.get()
+        quiz_id = self.entry_id.get()
+        date = str(datetime.date.today())
+        questions = []
+        for q_entry, choix_entry, rep_entry in self.questions_entries:
+            question = q_entry.get()
+            choix = [c.strip() for c in choix_entry.get().split(';')]
+            reponse = rep_entry.get()
+            questions.append({
+                "question": question,
+                "choix": choix,
+                "reponse": reponse
+            })
+        new_quiz = {
+            "id": quiz_id,
+            "date creation": date,
+            "titre": titre,
+            "questions": questions
+        }
+        try:
+            with open("quiz.json", 'r', encoding="utf-8") as f:
+                data = json.load(f)
+        except (FileNotFoundError, json.JSONDecodeError):
+            data = []
         data.append(new_quiz)
-        
-        with open("quiz.json", "W", encoding="utf-8") as f:
-             json.dump(data, f, indent=3)
-            
-        
-    def modifierquiz(self):
-        option=input(int("Vous avez plusieurs option:\n" \
-        "1. ajouter des questions\n" \
-        "2. supprimer une question\n" \
-        "3. changer une reponse\n" \
-        "Que choisissez-vous? "))
-
-        if option==1:
-            with open("quiz.json", "r", encoding="utf-8") as f:
-                data=json.load(f)
-            id_quiz=input(int("Entrez l'id du quiz a modifier :"))
-            for element in data:
-                 if element["id"]==id_quiz:
-                      n=input(int("nombre de questions a ajouter :"))
-                      for j in range(n):
-                          question=input(str("Entrez la question: "))
-                          choix=input(list("Entrez les choix de reponse: "))
-                          reponse=input(str("Entrez la reponse correcte: "))
-                          new_question={
-                              "question":question,
-                              "choix":choix,
-                              "reponse":reponse
-                          }
-                          element["questions"].append(new_question)
-        if option ==2:
-             id_quiz=input(int("Entrez l'id du quiz a modifier :"))
-             with open("quiz.json", 'r', encoding="utf-8") as f:
-                 data=json.load(f)
-             for element in data:
-                 if element["id"]==id_quiz:
-                     n=input(int("nombre de questions a supprimer :"))
-                     for j in range(n):
-                         question=input(str("Entrez la question a supprimer: "))
-                         for q in element["questions"]:
-                             if q["question"]==question:
-                                 element["questions"].remove(q)
-        if option==3:
-             id_quiz=input(int("Entrez l'id du quiz a modifier :"))
-             with open("quiz.json", 'r', encoding="utf-8") as f:
-                 data=json.load(f)
-             for element in data:
-                 if element["id"]==id_quiz:
-                     n=input(int("nombre de reponses a changer :"))
-                     for j in range(n):
-                         question=input(str("Entrez la question dont vous voulez changer la reponse: "))
-                         for q in element["questions"]:
-                             if q["question"]==question:
-                                 nouvelle_reponse=input(str("Entrez la nouvelle reponse: "))
-                                 q["reponse"]=nouvelle_reponse
-                                 break
-
-    def supprimerquiz(self):
-        id_quiz=input(int("Entrez l'id du quiz a supprimer :"))
-
-        with open("quiz.json", 'r', encoding="utf-8") as f:
-                data=json.load(f)
-        for element in data:
-             if element["id"]==id_quiz:
-                  data.remove(element)
+        with open("quiz.json", "w", encoding="utf-8") as f:
+            json.dump(data, f, indent=3, ensure_ascii=False)
+        messagebox.showinfo("Succès", "Quiz enregistré avec succès !")
             
