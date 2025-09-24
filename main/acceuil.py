@@ -1,8 +1,8 @@
 import tkinter as tk
-
 import explore_quiz
 import crée_quiz 
 import modification_quiz
+
 
 def creer_accueil_utilisateur(root, nom, retour=None):
     frame = tk.Frame(root, bg="white")
@@ -16,9 +16,11 @@ def creer_accueil_utilisateur(root, nom, retour=None):
     def on_nav_click(name):
         print(f"Navigation : {name}")
 
-    nav_buttons = ["Accueil", "Explorer", "Mode utilisateur"]
-    for text in nav_buttons:
-        btn = tk.Button(navbar, text=text, command=lambda t=text: on_nav_click(t),
+    nav_buttons = [("Accueil", lambda: changer_page(frame, creer_accueil_utilisateur(root, nom, retour=frame)))
+                   ,("Explorer",lambda: changer_page(frame, explore_quiz.page_explorer_quiz(root, nom, retour=frame))), 
+                   ("Mode utilisateur",lambda: changer_page(frame, creer_accueil_utilisateur(root, nom, retour=frame)))]
+    for text, cmd in nav_buttons:
+        btn = tk.Button(navbar, text=text, command=cmd,
                         bg="black", fg="white", relief="flat", padx=20, pady=10)
         btn.pack(side="left", padx=5, pady=5)
 
@@ -42,23 +44,23 @@ def creer_accueil_utilisateur(root, nom, retour=None):
     # ------------------------------
     # CONTENU PRINCIPAL (BOUTONS)
     # ------------------------------
-    main_frame = tk.Frame(frame)
+    main_frame = tk.Frame(frame, bg="black")
     main_frame.pack(expand=True)
 
+    def on_main_button_click(name):
+        print(f"Action : {name}")
             
-    def open_cree_quiz():
-        changer_page(frame, crée_quiz.page_cree_quiz(root, nom, retour=frame))
 
-    def open_modif_quiz():
-        changer_page(frame, modification_quiz.page_modification_quiz(root, nom, retour=frame))
 
     def open_explorer():
-        changer_page(frame, explore_quiz.page_explorer_quiz(root, nom, retour=frame))
+        frame.pack_forget()  # cacher accueil
+        quiz_frame = (root, frame)
+        quiz_frame.pack(fill="both", expand=True)
 
     actions = [
         ("Créer votre quiz", 0, 0, lambda: changer_page(frame, crée_quiz.page_cree_quiz(root, nom, retour=frame))),
         ("Modification d’un quiz", 1, 0, lambda: changer_page(frame, modification_quiz.page_modification_quiz(root, nom, retour=frame))),
-        ("Explorer d’autres quiz", 2, 0, lambda: changer_page(frame, explore_quiz.page_explorer_quiz(root, nom, retour=frame))),
+        ("Explorer d’autre quiz", 2, 0, lambda: changer_page(frame, explore_quiz.page_explorer_quiz(root, nom, retour=frame))),
     ]
 
     for text, row, col, cmd in actions:

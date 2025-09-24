@@ -18,24 +18,24 @@ def page_cree_quiz(root, nom, retour=None):
 
     # Ici tu peux rajouter ton formulaire ou contenu pour créer un qui
 
-    tk.Label(frame, text="Création d'un Quiz", font=("Arial", 18, "bold"), fg="orange", bg="white").pack(pady=10)
+    tk.Label(frame, text="Création d'un Quiz", font=("Arial", 18, "bold"), fg="Black", bg="white").pack(pady=10)
 
-    form = tk.Frame(frame, bg="white")
+    form = tk.Frame(frame, bg="black")
     form.pack(pady=10)
 
-    tk.Label(form, text="Titre du Quiz:", bg="white").grid(row=0, column=0, sticky="e")
+    tk.Label(form, text="Titre du Quiz:",bg="black", fg="white").grid(row=0, column=0, sticky="e")
     entry_title = tk.Entry(form)
     entry_title.grid(row=0, column=1, pady=5)
 
-    tk.Label(form, text="ID du Quiz:", bg="white").grid(row=1, column=0, sticky="e")
+    tk.Label(form, text="ID du Quiz:", bg="black", fg="white").grid(row=1, column=0, sticky="e")
     entry_id = tk.Entry(form)
     entry_id.grid(row=1, column=1, pady=5)
 
-    tk.Label(form, text="Nombre de questions:", bg="white").grid(row=2, column=0, sticky="e")
+    tk.Label(form, text="Nombre de questions:", bg="black", fg="white").grid(row=2, column=0, sticky="e")
     entry_nq = tk.Entry(form)
     entry_nq.grid(row=2, column=1, pady=5)
 
-    questions_frame = tk.Frame(frame, bg="white")
+    questions_frame = tk.Frame(frame, bg="black")
     questions_frame.pack(pady=10)
 
     questions_entries = []  # Liste pour stocker les entrées de questions
@@ -50,15 +50,15 @@ def page_cree_quiz(root, nom, retour=None):
             messagebox.showerror("Erreur", "Veuillez entrer un nombre valide de questions.")
             return
         for i in range(n):
-            q_label = tk.Label(questions_frame, text=f"Question {i+1}:", bg="white")
+            q_label = tk.Label(questions_frame, text=f"Question {i+1}:", bg="black", fg="white")
             q_label.grid(row=i*3, column=0, sticky="w")
             q_entry = tk.Entry(questions_frame, width=40)
             q_entry.grid(row=i*3, column=1)
-            choix_label = tk.Label(questions_frame, text="Choix (séparés par ;):", bg="white")
+            choix_label = tk.Label(questions_frame, text="Choix (séparés par ;):", bg="black", fg="white")
             choix_label.grid(row=i*3+1, column=0, sticky="w")
             choix_entry = tk.Entry(questions_frame, width=40)
             choix_entry.grid(row=i*3+1, column=1)
-            rep_label = tk.Label(questions_frame, text="Réponse correcte:", bg="white")
+            rep_label = tk.Label(questions_frame, text="Réponse correcte:", bg="black", fg="white")
             rep_label.grid(row=i*3+2, column=0, sticky="w")
             rep_entry = tk.Entry(questions_frame, width=40)
             rep_entry.grid(row=i*3+2, column=1)
@@ -97,13 +97,13 @@ def page_cree_quiz(root, nom, retour=None):
         }
 
         try:
-            with open("quiz.json", 'r', encoding="utf-8") as f:
+            with open("main/data/quiz.json", 'r', encoding="utf-8") as f:
                 data = json.load(f)
         except (FileNotFoundError, json.JSONDecodeError):
             data = []
 
         data.append(new_quiz)
-        with open("quiz.json", "w", encoding="utf-8") as f:
+        with open("main/data/quiz.json", "w", encoding="utf-8") as f:
             json.dump(data, f, indent=3, ensure_ascii=False)
 
         messagebox.showinfo("Succès", "Quiz enregistré avec succès !")
