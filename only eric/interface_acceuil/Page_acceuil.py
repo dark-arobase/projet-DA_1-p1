@@ -38,6 +38,9 @@ avatar = tk.Canvas(user_frame, width=30, height=30, bg="black", highlightthickne
 avatar.create_oval(5, 5, 25, 25, fill="gray")
 avatar.pack(side="left")
 
+Label = tk.Label(root, text="Bienvenue sur Yuppiquiz!", font=("Arial", 24, "bold"), fg="Orange", bg="aqua")
+Label.pack(pady=20)
+
 # ------------------------------
 # CONTENU PRINCIPAL
 # ------------------------------
