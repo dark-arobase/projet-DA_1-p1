@@ -1,5 +1,4 @@
 import tkinter as tk
-from main.classe.createur import createur
 
 
 #Fenetre principal root

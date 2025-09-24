@@ -1,5 +1,5 @@
 import tkinter as tk
-from createur import CreerQuizFrame
+
 import explore_quiz
 import crée_quiz 
 import modification_quiz
@@ -42,16 +42,9 @@ def creer_accueil_utilisateur(root, nom, retour=None):
     # ------------------------------
     # CONTENU PRINCIPAL (BOUTONS)
     # ------------------------------
-    main_frame = tk.Frame(frame, bg="black")
+    main_frame = tk.Frame(frame)
     main_frame.pack(expand=True)
 
-<<<<<<< HEAD
-    def on_main_button_click(name):
-        print(f"Action : {name}")
-        if name =="Créé votre quiz":
-            fenetre=CreerQuizFrame(root, bg="white")
-=======
->>>>>>> 3c524714ae88edbe927a4105e22daad20095400c
             
     def open_cree_quiz():
         changer_page(frame, crée_quiz.page_cree_quiz(root, nom, retour=frame))
@@ -64,8 +57,8 @@ def creer_accueil_utilisateur(root, nom, retour=None):
 
     actions = [
         ("Créer votre quiz", 0, 0, lambda: changer_page(frame, crée_quiz.page_cree_quiz(root, nom, retour=frame))),
-        ("Modification d’un quiz", 0, 1, lambda: changer_page(frame, modification_quiz.page_modification_quiz(root, nom, retour=frame))),
-        ("Explorer d’autre quiz", 1, 0, lambda: changer_page(frame, explore_quiz.page_explorer_quiz(root, nom, retour=frame))),
+        ("Modification d’un quiz", 1, 0, lambda: changer_page(frame, modification_quiz.page_modification_quiz(root, nom, retour=frame))),
+        ("Explorer d’autres quiz", 2, 0, lambda: changer_page(frame, explore_quiz.page_explorer_quiz(root, nom, retour=frame))),
     ]
 
     for text, row, col, cmd in actions:
