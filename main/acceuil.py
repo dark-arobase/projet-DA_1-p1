@@ -1,5 +1,5 @@
 import tkinter as tk
-
+from createur import CreerQuizFrame
 import explore_quiz
 import crée_quiz 
 import modification_quiz
@@ -45,6 +45,13 @@ def creer_accueil_utilisateur(root, nom, retour=None):
     main_frame = tk.Frame(frame, bg="black")
     main_frame.pack(expand=True)
 
+<<<<<<< HEAD
+    def on_main_button_click(name):
+        print(f"Action : {name}")
+        if name =="Créé votre quiz":
+            fenetre=CreerQuizFrame(root, bg="white")
+=======
+>>>>>>> 3c524714ae88edbe927a4105e22daad20095400c
             
     def open_cree_quiz():
         changer_page(frame, crée_quiz.page_cree_quiz(root, nom, retour=frame))
