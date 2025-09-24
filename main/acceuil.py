@@ -20,10 +20,14 @@ def creer_accueil_utilisateur(root, nom, retour=None):
         btn.pack(side="left", padx=5, pady=5)
 
     # Espace utilisateur à droite
-    user_frame = tk.Frame(navbar, bg="black")
+    user_frame = tk.Frame(navbar, bg="gray")
     user_frame.pack(side="right", padx=10)
 
+<<<<<<< HEAD
     user_label = tk.Label(user_frame, text=f"{nom}, (admin)", fg="white", bg="black")
+=======
+    user_label = tk.Label(user_frame, text="{}", fg="white", bg="black")
+>>>>>>> cf3de4be2e5d89000384fda6824dea6e0ac8dc8d
     user_label.pack(side="left", padx=5)
 
     avatar = tk.Canvas(user_frame, width=30, height=30, bg="black", highlightthickness=0)
@@ -33,13 +37,13 @@ def creer_accueil_utilisateur(root, nom, retour=None):
     # ------------------------------
     # MESSAGE D’ACCUEIL
     # ------------------------------
-    label = tk.Label(frame, text="Bienvenue sur Yuppiquiz!", font=("Arial", 24, "bold"), fg="orange", bg="aqua")
+    label = tk.Label(frame, text="Bienvenue sur Yuppiquiz!", font=("Arial", 24, "bold"), fg="blue", bg="white")
     label.pack(pady=20)
 
     # ------------------------------
     # CONTENU PRINCIPAL (BOUTONS)
     # ------------------------------
-    main_frame = tk.Frame(frame, bg="white")
+    main_frame = tk.Frame(frame, bg="black")
     main_frame.pack(expand=True)
 
     def on_main_button_click(name):
