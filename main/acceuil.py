@@ -1,30 +1,6 @@
 import tkinter as tk
 
-def page_explorer_quiz(root, retour_frame):
-    """Page Explorer d’autre quiz"""
-    frame_quiz = tk.Frame(root, bg="black")
-
-    header_font = ("Arial", 20, "bold")
-    box_text_font = ("Arial", 14)
-
-    label = tk.Label(frame_quiz, text="VEUILLEZ REJOINDRE UN QUIZ",
-                     font=header_font, bg="black", fg="white")
-    label.pack(pady=40)
-
-    label1 = tk.Label(frame_quiz, text="Entrez le code du quiz :",
-                      font=box_text_font, bg="black", fg="white")
-    label1.pack(pady=10)
-
-    # Bouton retour vers la frame d'accueil
-    def retour():
-        frame_quiz.pack_forget()
-        retour_frame.pack(fill="both", expand=True)
-
-    tk.Button(frame_quiz, text="Retour", command=retour,
-              bg="red", fg="white", font=("Arial", 12, "bold")).pack(pady=20)
-
-    return frame_quiz
-
+import explore_quiz
 
 def creer_accueil_utilisateur(root, nom, retour=None):
     frame = tk.Frame(root, bg="white")
@@ -72,14 +48,14 @@ def creer_accueil_utilisateur(root, nom, retour=None):
 
     def open_explorer():
         frame.pack_forget()  # cacher accueil
-        quiz_frame = page_explorer_quiz(root, frame)
+        quiz_frame = (root, frame)
         quiz_frame.pack(fill="both", expand=True)
 
     actions = [
-        ("Créé votre quiz", 0, 0, lambda: on_main_button_click("Créé votre quiz")),
-        ("Modification d’un quiz", 0, 1, lambda: on_main_button_click("Modification")),
-        ("Explorer d’autre quiz", 1, 0, open_explorer),
-        ("Hoster votre quiz", 1, 1, lambda: on_main_button_click("Hoster")),
+    ("Créé votre quiz", 0, 0, lambda: on_main_button_click("Créé votre quiz")),
+    ("Modification d’un quiz", 0, 1, lambda: on_main_button_click("Modification")),
+    ("Explorer d’autre quiz", 1, 0, lambda: changer_page(frame, explore_quiz.page_explorer_quiz(root, nom, retour=frame))),
+    ("Hoster votre quiz", 1, 1, lambda: on_main_button_click("Hoster")),
     ]
 
     for text, row, col, cmd in actions:
@@ -103,6 +79,11 @@ def creer_accueil_utilisateur(root, nom, retour=None):
 
     return frame
 
+#-------
+def changer_page(frame_actuel, frame_suivant):
+    frame_actuel.pack_forget()
+    frame_suivant.pack(fill="both", expand=True)
+#-------
 
 # Mode test autonome
 if __name__ == "__main__":
