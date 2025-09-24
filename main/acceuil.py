@@ -1,7 +1,9 @@
 import tkinter as tk
+from main.classe.createur import CreerQuizFrame
 
-def creer_accueil_utilisateur(root, retour=None):
+def creer_accueil_utilisateur(root, nom, retour=None):
     frame = tk.Frame(root, bg="white")
+    creer_quiz_frame = None  # Will hold the quiz creation frame
 
     # ------------------------------
     # BARRE DE NAVIGATION EN HAUT
@@ -43,7 +45,18 @@ def creer_accueil_utilisateur(root, retour=None):
     main_frame.pack(expand=True)
 
     def on_main_button_click(name):
-        print(f"Action : {name}")
+        nonlocal creer_quiz_frame
+        if name == "Créé votre quiz":
+            # Hide current frame and show quiz creation frame
+            frame.pack_forget()
+            if creer_quiz_frame is None:
+                def retour_accueil():
+                    creer_quiz_frame.pack_forget()
+                    frame.pack(fill="both", expand=True)
+                creer_quiz_frame = CreerQuizFrame(root, retour=retour_accueil)
+            creer_quiz_frame.pack(fill="both", expand=True)
+        else:
+            print(f"Action : {name}")
 
     actions = [
         ("Créé votre quiz", 0, 0),
@@ -72,3 +85,15 @@ def creer_accueil_utilisateur(root, retour=None):
                   bg="red", fg="white", font=("Arial", 12, "bold")).pack(pady=20)
 
     return frame
+
+# Mode test autonome
+if __name__ == "__main__":
+    root = tk.Tk()
+    root.title("Test - Accueil Utilisateur")
+    root.geometry("800x600")
+    root.configure(bg="black")
+
+    frame_test = creer_accueil_utilisateur(root, nom="TOTO")
+    frame_test.pack(fill="both", expand=True)
+
+    root.mainloop()
