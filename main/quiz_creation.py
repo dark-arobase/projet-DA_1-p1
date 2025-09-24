@@ -6,7 +6,7 @@ from main.classe.createur import createur
 root = tk.Tk()
 root.title("Interface Quiz Admin")
 root.geometry("800x600")
-root.configure(bg="white")
+root.configure(bg="black")
 
 # ------------------------------
 # BARRE DE NAVIGATION EN HAUT

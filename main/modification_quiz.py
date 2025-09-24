@@ -1,8 +1,8 @@
 import tkinter as tk
 
 def page_modification_quiz(root, nom, retour=None):
-    frame = tk.Frame(root, bg="white")
-    label = tk.Label(frame, text="Page Modification Quiz", font=("Arial", 20), bg="white", fg="black")
+    frame = tk.Frame(root, bg="black")
+    label = tk.Label(frame, text="Page Modification Quiz", font=("Arial", 20), bg="black", fg="white")
     label.pack(pady=20)
 
     def retour_accueil():

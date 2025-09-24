@@ -4,7 +4,7 @@ import datetime
 import json
 
 def page_cree_quiz(root, nom, retour=None):
-    frame = tk.Frame(root, bg="white")
+    frame = tk.Frame(root, bg="black")
     label = tk.Label(frame, text="Page Créer Quiz", font=("Arial", 20), bg="white", fg="black")
     label.pack(pady=20)
 
