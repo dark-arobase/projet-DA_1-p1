@@ -1,5 +1,7 @@
 import tkinter as tk
-from PIL import Image, ImageTk #pip install pillow
+from PIL import Image, ImageTk 
+
+#pip install pillow
 
 # Créer la fenêtre principale
 root = tk.Tk()

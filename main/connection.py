@@ -12,6 +12,11 @@ def connexion_utilisateur(root, retour=None):
     tk.Label(frame, text="PAGE CONNEXION", font=("Arial", 24, "bold"),
              bg="black", fg="white").pack(pady=40)
 
+    # Frame centrale avec rectangle blanc
+    frame_centre = tk.Frame(frame, bg="black", width=350, height=400, highlightbackground="white",
+                        highlightthickness=2)
+    frame_centre.place(relx=0.5, rely=0.5, anchor="center")
+    
     # Champ Nom
     tk.Label(frame, text="Nom d'utilisateur :", bg="black", font=box_text_font, fg="white").pack(pady=5)
     entry_nom = tk.Entry(frame, font=box_text_font)
@@ -58,7 +63,7 @@ def connexion_utilisateur(root, retour=None):
 
         if success:
             label_message.config(text="Connexion réussie !", fg="green")
-            frame.after(1000, lambda: changer_page(frame, acceuil.creer_accueil_utilisateur(root, retour=frame)))
+            frame.after(1000, lambda: changer_page(frame, acceuil.creer_accueil_utilisateur(root,nom, retour=frame)))
         else:
             label_message.config(text="Nom, Email ou mot de passe incorrect.", fg="red")
 

@@ -1,6 +1,6 @@
 import tkinter as tk
 
-def creer_accueil_utilisateur(root, retour=None):
+def creer_accueil_utilisateur(root, nom, retour=None):
     frame = tk.Frame(root, bg="white")
 
     # ------------------------------
@@ -23,7 +23,7 @@ def creer_accueil_utilisateur(root, retour=None):
     user_frame = tk.Frame(navbar, bg="black")
     user_frame.pack(side="right", padx=10)
 
-    user_label = tk.Label(user_frame, text="Nom utilisateur (admin)", fg="white", bg="black")
+    user_label = tk.Label(user_frame, text=f"{nom}, (admin)", fg="white", bg="black")
     user_label.pack(side="left", padx=5)
 
     avatar = tk.Canvas(user_frame, width=30, height=30, bg="black", highlightthickness=0)
@@ -72,3 +72,15 @@ def creer_accueil_utilisateur(root, retour=None):
                   bg="red", fg="white", font=("Arial", 12, "bold")).pack(pady=20)
 
     return frame
+
+# Mode test autonome
+if __name__ == "__main__":
+    root = tk.Tk()
+    root.title("Test - Accueil Utilisateur")
+    root.geometry("800x600")
+    root.configure(bg="black")
+
+    frame_test = creer_accueil_utilisateur(root, nom="TOTO")
+    frame_test.pack(fill="both", expand=True)
+
+    root.mainloop()
