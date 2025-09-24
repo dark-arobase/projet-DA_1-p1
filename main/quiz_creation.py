@@ -1,4 +1,5 @@
 import tkinter as tk
+from main.classe.createur import createur
 
 
 #Fenetre principal root
@@ -24,7 +25,7 @@ for text in nav_buttons:
 user_frame = tk.Frame(navbar, bg="black")
 user_frame.pack(side="right", padx=10)
 
-user_label = tk.Label(user_frame, text="Nom utilisateur (admin)", fg="white", bg="black")
+user_label = tk.Label(user_frame, text="{}", fg="white", bg="black")
 user_label.pack(side="left", padx=5)
 
 # (Optionnel) Ajout d'un avatar (image) : ici, juste un rond gris simulé
@@ -36,5 +37,7 @@ Label = tk.Label(root, text="Création du quiz", font=("Arial", 24, "bold"), fg=
 Label.pack(pady=20)
 
 main_frame=tk.Frame(root, bg="white")
+
+
 
 root.mainloop()
