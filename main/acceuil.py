@@ -1,12 +1,7 @@
 import tkinter as tk
-from main.classe.createur import CreerQuizFrame
 
 def creer_accueil_utilisateur(root, nom, retour=None):
     frame = tk.Frame(root, bg="white")
-
-    creer_quiz_frame = None  # Will hold the quiz creation frame
-
-    root.title("acceuil")
 
     # ------------------------------
     # BARRE DE NAVIGATION EN HAUT
@@ -25,10 +20,8 @@ def creer_accueil_utilisateur(root, nom, retour=None):
         btn.pack(side="left", padx=5, pady=5)
 
     # Espace utilisateur à droite
-    user_frame = tk.Frame(navbar, bg="black")
+    user_frame = tk.Frame(navbar, bg="gray")
     user_frame.pack(side="right", padx=10)
-
-
 
     user_label = tk.Label(user_frame, text=f"{nom}, (admin)", fg="white", bg="black")
     user_label.pack(side="left", padx=5)
@@ -50,18 +43,7 @@ def creer_accueil_utilisateur(root, nom, retour=None):
     main_frame.pack(expand=True)
 
     def on_main_button_click(name):
-        nonlocal creer_quiz_frame
-        if name == "Créé votre quiz":
-            # Hide current frame and show quiz creation frame
-            frame.pack_forget()
-            if creer_quiz_frame is None:
-                def retour_accueil():
-                    creer_quiz_frame.pack_forget()
-                    frame.pack(fill="both", expand=True)
-                creer_quiz_frame = CreerQuizFrame(root, retour=retour_accueil)
-            creer_quiz_frame.pack(fill="both", expand=True)
-        else:
-            print(f"Action : {name}")
+        print(f"Action : {name}")
 
     actions = [
         ("Créé votre quiz", 0, 0),
