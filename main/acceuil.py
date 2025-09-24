@@ -2,7 +2,7 @@ import tkinter as tk
 
 def creer_accueil_utilisateur(root, nom, retour=None):
     frame = tk.Frame(root, bg="white")
-    root.title("acceuil")
+
     # ------------------------------
     # BARRE DE NAVIGATION EN HAUT
     # ------------------------------
@@ -33,7 +33,7 @@ def creer_accueil_utilisateur(root, nom, retour=None):
     # ------------------------------
     # MESSAGE D’ACCUEIL
     # ------------------------------
-    label = tk.Label(frame, text="Bienvenue sur Yuppiquiz!", font=("Arial", 24, "bold"), fg="blue", bg="white")
+    label = tk.Label(frame, text="Bienvenue sur Yuppiquiz!", font=("Arial", 24, "bold"), fg="#2B2626")
     label.pack(pady=20)
 
     # ------------------------------
@@ -69,7 +69,7 @@ def creer_accueil_utilisateur(root, nom, retour=None):
             retour.pack(fill="both", expand=True)
 
         tk.Button(frame, text="Déconnexion", command=deconnexion,
-                  bg="red", fg="white", font=("Arial", 12, "bold")).pack(pady=20)
+                  bg="black", fg="white", font=("Arial", 12, "bold")).pack(pady=20)
 
     return frame
 
