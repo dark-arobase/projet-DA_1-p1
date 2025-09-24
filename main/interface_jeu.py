@@ -1,5 +1,10 @@
 import tkinter as tk
 
+def on_nav_click(name):
+    print(f"Navigation : {name}")
+    if name == "Accueil":
+        pass
+
 
 #Fenetre principal root
 root = tk.Tk()
@@ -36,5 +41,8 @@ Label = tk.Label(root, text="Création du quiz", font=("Arial", 24, "bold"), fg=
 Label.pack(pady=20)
 
 main_frame=tk.Frame(root, bg="white")
+main_frame.pack(expand=True)
+
+
 
 root.mainloop()

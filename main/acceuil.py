@@ -20,10 +20,10 @@ def creer_accueil_utilisateur(root, retour=None):
         btn.pack(side="left", padx=5, pady=5)
 
     # Espace utilisateur à droite
-    user_frame = tk.Frame(navbar, bg="gray")
+    user_frame = tk.Frame(navbar, bg="black")
     user_frame.pack(side="right", padx=10)
 
-    user_label = tk.Label(user_frame, text="{}", fg="white", bg="black")
+    user_label = tk.Label(user_frame, text="", fg="white", bg="black")
     user_label.pack(side="left", padx=5)
 
     avatar = tk.Canvas(user_frame, width=30, height=30, bg="black", highlightthickness=0)
