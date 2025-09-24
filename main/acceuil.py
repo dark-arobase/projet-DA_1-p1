@@ -47,6 +47,8 @@ def creer_accueil_utilisateur(root, nom, retour=None):
 
     def on_main_button_click(name):
         print(f"Action : {name}")
+        if name =="Créé votre quiz":
+            
 
 
     def open_explorer():

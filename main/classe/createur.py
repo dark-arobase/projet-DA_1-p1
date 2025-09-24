@@ -6,10 +6,8 @@ from tkinter import messagebox
 import datetime
 import json
 
-class CreerQuizFrame(tk.Frame):
+class CreerQuizFrame:
     def __init__(self, parent, retour=None, *args, **kwargs):
-        super().__init__(parent, bg="white", *args, **kwargs)
-        self.retour = retour
 
         tk.Label(self, text="Création d'un Quiz", font=("Arial", 18, "bold"), fg="orange", bg="white").pack(pady=10)
 
