@@ -1,4 +1,4 @@
-from utilisateurs import Utilisateur
+from utlisateurs import Utilisateur
 from quiz import Question, Reponse, Quiz
 import datetime
 import json
@@ -38,11 +38,11 @@ class createur(Utilisateur):
                             ]
                         }    
 
-        with open("quiz.json", r, encoding="utf-8") as f: # le quiz est ajouter dans j.son pour la sauvegarde
+        with open("quiz.json", 'r', encoding="utf-8") as f: # le quiz est ajouter dans j.son pour la sauvegarde
                 data=json.load(f)
         data.append(new_quiz)
         
-        with open("quiz.json", w, encoding="utf-8") as f:
+        with open("quiz.json", "W", encoding="utf-8") as f:
              json.dump(data, f, indent=3)
             
         
@@ -54,7 +54,7 @@ class createur(Utilisateur):
         "Que choisissez-vous? "))
 
         if option==1:
-            with open("quiz.json", r, encoding="utf-8") as f:
+            with open("quiz.json", "r", encoding="utf-8") as f:
                 data=json.load(f)
             id_quiz=input(int("Entrez l'id du quiz a modifier :"))
             for element in data:
@@ -72,7 +72,7 @@ class createur(Utilisateur):
                           element["questions"].append(new_question)
         if option ==2:
              id_quiz=input(int("Entrez l'id du quiz a modifier :"))
-             with open("quiz.json", r, encoding="utf-8") as f:
+             with open("quiz.json", 'r', encoding="utf-8") as f:
                  data=json.load(f)
              for element in data:
                  if element["id"]==id_quiz:
@@ -84,7 +84,7 @@ class createur(Utilisateur):
                                  element["questions"].remove(q)
         if option==3:
              id_quiz=input(int("Entrez l'id du quiz a modifier :"))
-             with open("quiz.json", r, encoding="utf-8") as f:
+             with open("quiz.json", 'r', encoding="utf-8") as f:
                  data=json.load(f)
              for element in data:
                  if element["id"]==id_quiz:
@@ -100,7 +100,7 @@ class createur(Utilisateur):
     def supprimerquiz(self):
         id_quiz=input(int("Entrez l'id du quiz a supprimer :"))
 
-        with open("quiz.json", r, encoding="utf-8") as f:
+        with open("quiz.json", 'r', encoding="utf-8") as f:
                 data=json.load(f)
         for element in data:
              if element["id"]==id_quiz:
