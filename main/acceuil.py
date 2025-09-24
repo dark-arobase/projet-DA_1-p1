@@ -2,7 +2,7 @@ import tkinter as tk
 
 def creer_accueil_utilisateur(root, nom, retour=None):
     frame = tk.Frame(root, bg="white")
-
+    root.title("acceuil")
     # ------------------------------
     # BARRE DE NAVIGATION EN HAUT
     # ------------------------------
@@ -23,11 +23,7 @@ def creer_accueil_utilisateur(root, nom, retour=None):
     user_frame = tk.Frame(navbar, bg="gray")
     user_frame.pack(side="right", padx=10)
 
-<<<<<<< HEAD
     user_label = tk.Label(user_frame, text=f"{nom}, (admin)", fg="white", bg="black")
-=======
-    user_label = tk.Label(user_frame, text="{}", fg="white", bg="black")
->>>>>>> cf3de4be2e5d89000384fda6824dea6e0ac8dc8d
     user_label.pack(side="left", padx=5)
 
     avatar = tk.Canvas(user_frame, width=30, height=30, bg="black", highlightthickness=0)
