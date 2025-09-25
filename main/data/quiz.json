@@ -25,5 +25,52 @@
             "reponse": "1.66"
          }
       ]
+   },
+   {
+      "id": "2",
+      "date creation": "2025-09-25",
+      "titre": "Massyle",
+      "questions": [
+         {
+            "question": "Quel est la matière préféré de Massyle",
+            "choix": [
+               "sciene",
+               "philo",
+               "français",
+               "base de donne"
+            ],
+            "reponse": "base de donne"
+         },
+         {
+            "question": "Qui est la prof pref de Massyle",
+            "choix": [
+               "Asma",
+               "asma",
+               "ASMA",
+               "asmia"
+            ],
+            "reponse": "Asma"
+         },
+         {
+            "question": "La note pref de Massyle",
+            "choix": [
+               "0",
+               "100",
+               "23",
+               "24"
+            ],
+            "reponse": "24"
+         },
+         {
+            "question": "Massyle + Massyle =?",
+            "choix": [
+               "double Massyle",
+               "Massyle Massyle",
+               "Mas",
+               "syle"
+            ],
+            "reponse": "Massyle Massyle"
+         }
+      ]
    }
 ]
