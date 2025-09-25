@@ -5,7 +5,7 @@
       "titre": "Mathematique",
       "questions": [
          {
-            "question": "1+1",
+            "question": "Combien font 1+1?",
             "choix": [
                "2",
                "4",
@@ -15,7 +15,7 @@
             "reponse": "2"
          },
          {
-            "question": "5/3",
+            "question": "Combien fait 5/3?",
             "choix": [
                "infini",
                "0",

@@ -1,7 +1,19 @@
 import tkinter as tk
+import interface_jeu
 
 def page_explorer_quiz(root, nom=None, retour=None):
     frame = tk.Frame(root, bg="black")
+    frame.pack(fill="both", expand=True)
+    
+    navbar = tk.Frame(frame, bg="black", height=50)
+    navbar.pack(fill="x")
+
+    # Espace utilisateur à droite
+    user_frame = tk.Frame(navbar, bg="gray")
+    user_frame.pack(side="right", padx=10)
+
+    user_label = tk.Label(user_frame, text=f"{nom}, (admin)", fg="white", bg="black")
+    user_label.pack(side="left", padx=5)
 
     # Titre
     label = tk.Label(frame, text="Page Explorer Quiz",
@@ -12,8 +24,10 @@ def page_explorer_quiz(root, nom=None, retour=None):
     center_frame = tk.Frame(frame, bg="black")
     center_frame.pack(expand=True)  # prend tout l'espace restant
 
-    # Gros bouton quiz
-    quiz_btn = tk.Button(center_frame,text="Mathématique",font=("Arial", 20, "bold"),bg= "black",fg="white",width=12, height=3,relief="raised", bd=4)
+    # Gros bouton quiz  ##-----principal probleme rencontrée-----##
+    quiz_btn = tk.Button(center_frame,text="Mathematique",font=("Arial", 20, "bold"),
+                         bg= "black",fg="white",width=12, height=3,relief="raised", bd=4
+                         , command=lambda : changer_page(frame, interface_jeu.page_joueur(root, nom, retour=frame, texte=quiz_btn["text"] )))
     quiz_btn.pack(pady=20)
 
     # Bouton retour en bas
@@ -27,6 +41,10 @@ def page_explorer_quiz(root, nom=None, retour=None):
                            font=("Arial", 14, "bold"),
                            bg="red", fg="white", width=10)
     btn_retour.pack(pady=20)
+
+    def changer_page(frame_actuel, frame_suivant):
+     frame_actuel.pack_forget()
+     frame_suivant.pack(fill="both", expand=True)
 
     return frame
 
