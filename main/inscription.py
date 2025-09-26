@@ -55,12 +55,10 @@ def creer_inscription(root, retour=None):
 
         label_message.config(text="Inscription réussie !", fg="green")
 
-    tk.Button(frame, text="Inscription", command=valider_inscription,
-              bg="white", fg="black", font=("Arial", 12, "bold")).pack(pady=20)
+    tk.Button(frame, text="Inscription", command=valider_inscription,bg="black", fg="white", font=("Arial", 12, "bold")).pack(pady=20)
     if retour:
         tk.Button(frame, text="Retour",
-                  command=lambda: changer_page(frame, retour),
-                  bg="white", fg="black", font=("Arial", 12, "bold")).pack(pady=10)
+                  command=lambda: changer_page(frame, retour),bg="black", fg="white", font=("Arial", 12, "bold")).pack(pady=10)
     return frame
 
 def changer_page(frame_actuel, frame_suivant):

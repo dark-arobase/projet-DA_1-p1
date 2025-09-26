@@ -5,7 +5,7 @@ import modification_quiz
 
 
 def creer_accueil_utilisateur(root, nom, retour=None):
-    frame = tk.Frame(root, bg="white")
+    frame = tk.Frame(root, bg="black")
     root.title("Acceuil")
     # ------------------------------
     # BARRE DE NAVIGATION EN HAUT
@@ -16,19 +16,18 @@ def creer_accueil_utilisateur(root, nom, retour=None):
     def on_nav_click(name):
         print(f"Navigation : {name}")
 
-    nav_buttons = [("Accueil", lambda: changer_page(frame, creer_accueil_utilisateur(root, nom, retour=frame)))
-                   ,("Explorer",lambda: changer_page(frame, explore_quiz.page_explorer_quiz(root, nom, retour=frame))), 
-                   ("Mode utilisateur",lambda: changer_page(frame, creer_accueil_utilisateur(root, nom, retour=frame)))]
-    for text, cmd in nav_buttons:
-        btn = tk.Button(navbar, text=text, command=cmd,
-                        bg="black", fg="white", relief="flat", padx=20, pady=10)
-        btn.pack(side="left", padx=5, pady=5)
+    #nav_buttons = [("Explorer", lambda: changer_page(frame, explore_quiz.page_explorer_quiz(root, nom, retour=frame))),
+                   #("Mode utilisateur", lambda: changer_page(frame, creer_accueil_utilisateur(root, nom, retour=frame)))]
+    #for text, cmd in nav_buttons:
+    #    btn = tk.Button(navbar, text=text, command=cmd,
+    #                    bg="black", fg="white", relief="flat", padx=20, pady=10)
+    #    btn.pack(side="left", padx=5, pady=5)
 
     # Espace utilisateur à droite
     user_frame = tk.Frame(navbar, bg="gray")
     user_frame.pack(side="right", padx=10)
 
-    user_label = tk.Label(user_frame, text=f"{nom}, (admin)", fg="white", bg="black")
+    user_label = tk.Label(user_frame, text=f"{nom}", fg="white", bg="black")
     user_label.pack(side="left", padx=5)
 
     avatar = tk.Canvas(user_frame, width=30, height=30, bg="black", highlightthickness=0)
@@ -38,24 +37,16 @@ def creer_accueil_utilisateur(root, nom, retour=None):
     # ------------------------------
     # MESSAGE D’ACCUEIL
     # ------------------------------
-    label = tk.Label(frame, text="Bienvenue sur Yuppiquiz!", font=("Arial", 24, "bold"), fg="#2B2626")
-    label.pack(pady=20)
+    label = tk.Label(frame, text=f"Bienvenue {nom} !", font=("Arial", 24, "bold"),
+    bg="black", fg="white")
+    label.pack(pady=10)  # Réduit l’espace vertical ici
 
     # ------------------------------
     # CONTENU PRINCIPAL (BOUTONS)
     # ------------------------------
+    # CONTENU PRINCIPAL (BOUTONS)
     main_frame = tk.Frame(frame, bg="black")
-    main_frame.pack(expand=True)
-
-    def on_main_button_click(name):
-        print(f"Action : {name}")
-            
-
-
-    def open_explorer():
-        frame.pack_forget()  # cacher accueil
-        quiz_frame = (root, frame)
-        quiz_frame.pack(fill="both", expand=True)
+    main_frame.pack(expand=True)  # <- enlever fill="both" pour centrer verticalement
 
     actions = [
         ("Créer votre quiz", 0, 0, lambda: changer_page(frame, crée_quiz.page_cree_quiz(root, nom, retour=frame))),
@@ -64,12 +55,13 @@ def creer_accueil_utilisateur(root, nom, retour=None):
     ]
 
     for text, row, col, cmd in actions:
-        btn = tk.Button(main_frame, text=text, command=cmd,
-                        bg="black", fg="white", font=("Arial", 12, "bold"), width=20, height=3)
-        btn.grid(row=row, column=col, padx=40, pady=30)
+        btn = tk.Button(main_frame, text=text, command=cmd, bg="black", fg="white", font=("Arial", 12, "bold"), width=20, height=3)
+        btn.grid(row=row, column=col, padx=40, pady=20)
 
-    main_frame.grid_rowconfigure((0, 1), weight=1)
-    main_frame.grid_columnconfigure((0, 1), weight=1)
+    for i in range(3):
+        main_frame.grid_rowconfigure(i, weight=0)
+    main_frame.grid_columnconfigure(0, weight=1)  # centre horizontalement les boutons dans la colonne
+
 
     # ------------------------------
     # BOUTON DE DECONNEXION
@@ -79,8 +71,7 @@ def creer_accueil_utilisateur(root, nom, retour=None):
             frame.pack_forget()
             retour.pack(fill="both", expand=True)
 
-        tk.Button(frame, text="Déconnexion", command=deconnexion,
-                  bg="black", fg="white", font=("Arial", 12, "bold")).pack(pady=20)
+        tk.Button(frame, text="Déconnexion", command=deconnexion,bg="black", fg="white", font=("Arial", 12, "bold")).pack(pady=20)
 
     return frame
 
@@ -101,5 +92,3 @@ if __name__ == "__main__":
     frame_test.pack(fill="both", expand=True)
 
     root.mainloop()
-
-

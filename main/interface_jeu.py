@@ -1,8 +1,4 @@
 import tkinter as tk
-import explore_quiz
-import crée_quiz 
-import modification_quiz
-import createur
 import json
 
 def page_joueur(root, nom=None, retour=None, texte=None):
@@ -61,27 +57,19 @@ def page_joueur(root, nom=None, retour=None, texte=None):
 
     # Bouton Suivant (désactivé au départ)
     bouton_suivant = tk.Button(
-        bottom_frame, 
-        text="Suivant", 
-        command=lambda: question_suivante(),
-        font=("Arial", 12), 
-        bg="blue", fg="white", 
-        state="disabled"
-    )
-    bouton_suivant.pack(side="left", padx=10)
+        bottom_frame,
+        text="Suivant",
+        command=lambda: question_suivante(),bg="black", fg="white", font=("Arial",  18, "bold"),width=12,height=2)
+    bouton_suivant.pack(side="right", padx=10)
 
     # Bouton Retour (toujours visible)
     btn_retour = tk.Button(
-        bottom_frame, 
+        bottom_frame,
         text="Retour",
-        command=lambda: retour_accueil(),
-        font=("Arial", 14, "bold"),
-        bg="red", fg="white", width=10
-    )
-    btn_retour.pack(side="right", padx=10)
+        command=lambda: retour_accueil(),bg="black", fg="white", font=("Arial",  18, "bold"),width=12,height=2)
+    btn_retour.pack(side="left", padx=10)
 
-    # --- Fonctions ---
-
+    # --- Fonction verifier la réponse ---
     def verifier_reponse(reponse_donnee):
         bonne_reponse = questions[index_question[0]]["reponse"]
 
@@ -97,6 +85,7 @@ def page_joueur(root, nom=None, retour=None, texte=None):
 
         bouton_suivant.config(state="normal")
 
+    # --- Afficher question ---
     def afficher_question():
         feedback_label.config(text="")
         bouton_suivant.config(state="disabled")
@@ -135,62 +124,69 @@ def page_joueur(root, nom=None, retour=None, texte=None):
             btn.grid(row=row, column=col, padx=20, pady=15)
             boutons_radio.append(btn)
 
+    # --- Fonction question suivante ---
     def question_suivante():
         index_question[0] += 1
         if index_question[0] < total:
             afficher_question()
         else:
+            # Fin du quiz
             question_label.config(text="🎉 Quiz terminé !")
             feedback_label.config(text="")
             for btn in boutons_radio:
                 btn.destroy()
             bouton_suivant.pack_forget()  # cache le bouton Suivant
 
+            # Affiche score
             score_label.config(text=f"✅ Score final : {score[0]} / {total}")
             score_label.pack(pady=20)
 
-            # Bouton Recommencer dans main_content, ne gêne pas Retour
-            redo = tk.Button(
-                main_content,
-                text="Recommencer",
-                fg="white",
-                bg="green",
-                command=rejouer,
-                width=12
-            )
+            # Bouton Recommencer (placé sous le score)
+            redo = tk.Button(main_content,text="Recommencer", bg="black", fg="white", 
+                font=("Arial", 12, "bold"),width=12,height=2,command=rejouer)
             redo.pack(pady=10)
-            afficher_question.redo_btn = redo  # Pour pouvoir le détruire ensuite
+            afficher_question.redo_btn = redo  # Pour pouvoir le détruire plus tard
 
+    # --- Fonction rejouer ---
     def rejouer():
         index_question[0] = 0
         score[0] = 0
         score_label.config(text="")
         feedback_label.config(text="")
+
         # Supprimer le bouton Recommencer
         if hasattr(afficher_question, "redo_btn"):
             afficher_question.redo_btn.destroy()
-        afficher_question()
-        bouton_suivant.pack(pady=10)
+
+        # Remettre le bouton Suivant (toujours à droite dans bottom_frame)
+        bouton_suivant.pack(side="right", padx=10)
         bouton_suivant.config(state="disabled")
 
+        afficher_question()
+
+    # --- Fonction retour ---
     def retour_accueil():
+        # Cacher la frame quiz
         frame.pack_forget()
+        # Remettre la frame retour si elle est définie
         if retour:
             retour.pack(fill="both", expand=True)
+        else:
+            print("Pas de frame de retour définie")
 
     # --- Lancement ---
     afficher_question()
 
     return frame
 
-
+# Pour test direct si ce fichier est lancé
 if __name__ == "__main__":
     root = tk.Tk()
     root.title("Test - Page Joueur")
     root.geometry("800x600")
     root.configure(bg="white")
 
-    frame_test = page_joueur(root, nom="Admin", retour=None, texte="Mathematique")
+    frame_test = page_joueur(root, nom="Admin", retour=None, texte="Mathematics")
     frame_test.pack(fill="both", expand=True)
 
     root.mainloop()

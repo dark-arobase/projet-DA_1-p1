@@ -4,6 +4,7 @@ import tkinter as tk
 
 def page_explorer_quiz(root, nom=None, retour=None):
     frame = tk.Frame(root, bg="black")
+    root.title("Explorer Quiz")
     frame.pack(fill="both", expand=True)
 
     # Barre du haut
@@ -11,7 +12,7 @@ def page_explorer_quiz(root, nom=None, retour=None):
     navbar.pack(fill="x")
     user_frame = tk.Frame(navbar, bg="black")
     user_frame.pack(side="right", padx=10)
-    user_label = tk.Label(user_frame, text=f"{nom}, (admin)", fg="white", bg="black")
+    user_label = tk.Label(user_frame, text=f"{nom}", fg="white", bg="black")
     user_label.pack(side="left", padx=5)
     title = tk.Label(frame, text="Page Explorer Quiz", font=("Arial", 20, "bold"), fg="white", bg="black")
     title.pack(pady=20)
@@ -19,10 +20,10 @@ def page_explorer_quiz(root, nom=None, retour=None):
     # Recherche
     search_frame = tk.Frame(frame, bg="black")
     search_frame.pack(pady=10)
-    tk.Label(search_frame, text="Rechercher :", fg="white", bg="black").pack(side="left")
-    entry_search = tk.Entry(search_frame)
+    tk.Label(search_frame, text="Rechercher :", font=("Arial", 24, "bold"), bg="black", fg="white").pack(side="left")
+    entry_search = tk.Entry(search_frame, font=("Arial", 24, "bold"), bg="black", fg="white")
     entry_search.pack(side="left", padx=5)
-    btn_search = tk.Button(search_frame, text="OK", bg="white", fg="black")
+    btn_search = tk.Button(search_frame, text="🔍", font=("Arial", 24, "bold"), bg="black", fg="white")
     btn_search.pack(side="left", padx=5)
 
     

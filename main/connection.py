@@ -63,14 +63,11 @@ def connexion_utilisateur(root, retour=None):
             label_message.config(text="Nom, Email ou mot de passe incorrect.", fg="red")
 
     # Bouton Connexion
-    tk.Button(frame, text="Connexion", command=valider_connexion,
-              bg="white", fg="black", font=("Arial", 12, "bold")).pack(pady=20)
-
+    tk.Button(frame, text="Connexion", command=valider_connexion,bg="black", fg="white", font=("Arial", 12, "bold")).pack(pady=20)
     # Bouton Retour
     if retour:
         tk.Button(frame, text="Retour",
-                  command=lambda: changer_page(frame, retour),
-                  bg="white", fg="black", font=("Arial", 12, "bold")).pack(pady=10)
+                  command=lambda: changer_page(frame, retour),bg="black", fg="white", font=("Arial", 12, "bold")).pack(pady=20)
 
     return frame
 

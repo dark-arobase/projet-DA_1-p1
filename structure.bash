@@ -1,21 +1,25 @@
-Yuppiquiz/
-├── data/                             # Données de quiz, utilisateurs, etc.
-│   ├── utilisateurs.csv
-│   ├── quiz.csv
-│   ├── questions.json
-│   └── scores.json
+main/
+├── classe/                         # Classes Python (modèles)
+│   ├── Joueur.py
+│   ├── quiz.py
+│   ├── utilisateurs.py             # (attention à l’orthographe)
+│   └── __init__.py
 │
-├── src/
-│   └── yuppiquiz/
-│       ├── __main__.py              # Point d'entrée si on exécute le module
-│       ├── __init__.py
-│       ├── ui_main.py              # Lancement de l’interface
-│       ├── accueil.py              # Interface d’accueil utilisateur
-│       ├── connexion.py            # Interface de connexion
-│       ├── inscription.py          # Interface d’inscription
-│       ├── gestion_quiz.py         # Logique liée aux quiz
-│       └── bd.py                   # Lecture/écriture des fichiers (CSV/JSON)
+├── data/                           # Données (quiz, utilisateurs, etc.)
+│   ├── BasedeDonnee.csv            # ← probablement pour les utilisateurs
+│   └── quiz.json                   # ← questions et quiz
 │
+├── accueil.py                      # Interface d’accueil utilisateur
+├── connection.py                   # Interface de connexion
+├── inscription.py                  # Interface d’inscription
+├── interface_jeu.py                # Interface de jeu (jouer au quiz)
+├── explore_quiz.py                 # Parcourir les quiz existants
+├── modification_quiz.py            # Modifier un quiz
+├── createur.py                     # Créer un nouveau quiz
+├── crée_quiz.py                    # (à fusionner avec createur.py ?)
+├── main.py                         # Point d'entrée principal de ton projet
+├── wht.py                          # (à clarifier : utilité ?)
+|___ __pycache__/                    # Cache Python (peut être ignoré)
 ├── .gitignore
 ├── LICENSE                         # (MIT, GPL, etc.)
 ├── pyproject.toml                  # Configuration de projet (poetry ou setuptools)
