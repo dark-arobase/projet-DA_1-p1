@@ -88,7 +88,7 @@ def page_explorer_quiz(root, nom=None, retour=None):
     btn_retour = tk.Button(frame, text="Retour",
                            command=retour_accueil,
                            font=("Arial", 14, "bold"),
-                           bg="red", fg="white", width=10)
+                           bg="black", fg="white", width=10)
     btn_retour.pack(pady=10)
 
     return frame
@@ -100,6 +100,6 @@ if __name__ == "__main__":
     root.geometry("900x600")
     root.configure(bg="black")
 
-    frm = page_explorer_quiz(root, nom="Admin")
+    frm = page_explorer_quiz(root, nom="")
     frm.pack(fill="both", expand=True)
     root.mainloop()

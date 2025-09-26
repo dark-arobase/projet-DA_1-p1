@@ -752,7 +752,7 @@
                     "bg",
                     "fort"
                 ],
-                "reponse": "raciste"
+                "reponse": "bg"
             },
             {
                 "question": "Eric est bon en ?",
@@ -762,7 +762,7 @@
                     "python",
                     "csv"
                 ],
-                "reponse": "base de donnée"
+                "reponse": "math"
             }
         ]
     }
