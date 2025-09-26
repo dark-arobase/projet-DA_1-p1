@@ -6,7 +6,7 @@ import modification_quiz
 
 def creer_accueil_utilisateur(root, nom, retour=None):
     frame = tk.Frame(root, bg="white")
-
+    root.title("Acceuil")
     # ------------------------------
     # BARRE DE NAVIGATION EN HAUT
     # ------------------------------

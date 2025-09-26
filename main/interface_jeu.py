@@ -5,53 +5,84 @@ import modification_quiz
 import createur
 import json
 
-
 def page_joueur(root, nom=None, retour=None, texte=None):
     frame = tk.Frame(root, bg="white")
+    root.title("partie quiz")
     frame.pack(fill="both", expand=True)
 
     # --- Barre du haut (nom utilisateur)
-    navbar = tk.Frame(frame, bg="black", height=10)
+    navbar = tk.Frame(frame, bg="black", height=30)
     navbar.pack(fill="x")
 
-    user_frame = tk.Frame(navbar, bg="gray")
+    user_frame = tk.Frame(navbar, bg="black")
     user_frame.pack(side="right", padx=10)
 
     user_label = tk.Label(user_frame, text=f"{nom}, (admin)", fg="white", bg="black")
     user_label.pack(side="left", padx=5)
 
+    # Titre principal
     tk.Label(frame, text="Zone de Quiz", font=("Arial", 24, "bold"), fg="black", bg="white").pack(pady=20)
 
-    # Charger les quiz
-    with open("main/data/quiz.json", "r", encoding="utf-8") as f:
-        data = json.load(f)
+    # --- Charger les quiz depuis fichier JSON ---
+    try:
+        with open("main/data/quiz.json", "r", encoding="utf-8") as f:
+            data = json.load(f)
+    except FileNotFoundError:
+        tk.Label(frame, text="❌ Fichier quiz.json introuvable", fg="red", bg="white").pack(pady=20)
+        return frame
 
-    # Chercher le quiz correspondant
+    # --- Chercher le quiz correspondant ---
     quiz = next((q for q in data if q['titre'] == texte), None)
     if not quiz:
         tk.Label(frame, text="❌ Ce quiz n'existe pas", fg="red", bg="white").pack(pady=20)
-        return
+        return frame
 
     questions = quiz["questions"]
     total = len(questions)
-    score = [0]  # score dans une liste pour qu'il soit modifiable dans des sous-fonctions
-    index_question = [0]  # même logique
+    score = [0]
+    index_question = [0]
 
-    # Widgets dynamiques à mettre à jour
-    question_label = tk.Label(frame, text="", font=("Arial", 16), bg="white", wraplength=700)
+    # --- Cadre principal pour question et réponses ---
+    main_content = tk.Frame(frame, bg="white")
+    main_content.pack(fill="both", expand=True)
+
+    question_label = tk.Label(main_content, text="", font=("Arial", 16), bg="white", wraplength=700)
     question_label.pack(pady=10)
 
-    choix_var = tk.StringVar()
     boutons_radio = []
-    feedback_label = tk.Label(frame, text="", font=("Arial", 12, "italic"), bg="white")
+    feedback_label = tk.Label(main_content, text="", font=("Arial", 12, "italic"), bg="white")
     feedback_label.pack(pady=5)
 
-    # Score final (affiché à la fin)
-    score_label = tk.Label(frame, text="", font=("Arial", 14), bg="white")
+    score_label = tk.Label(main_content, text="", font=("Arial", 14), bg="white")
 
-    # Fonction de vérification immédiate
-    def verifier_reponse():
-        reponse_donnee = choix_var.get()
+    # --- Frame du bas pour boutons ---
+    bottom_frame = tk.Frame(frame, bg="white")
+    bottom_frame.pack(fill="x", side="bottom", pady=20)
+
+    # Bouton Suivant (désactivé au départ)
+    bouton_suivant = tk.Button(
+        bottom_frame, 
+        text="Suivant", 
+        command=lambda: question_suivante(),
+        font=("Arial", 12), 
+        bg="blue", fg="white", 
+        state="disabled"
+    )
+    bouton_suivant.pack(side="left", padx=10)
+
+    # Bouton Retour (toujours visible)
+    btn_retour = tk.Button(
+        bottom_frame, 
+        text="Retour",
+        command=lambda: retour_accueil(),
+        font=("Arial", 14, "bold"),
+        bg="red", fg="white", width=10
+    )
+    btn_retour.pack(side="right", padx=10)
+
+    # --- Fonctions ---
+
+    def verifier_reponse(reponse_donnee):
         bonne_reponse = questions[index_question[0]]["reponse"]
 
         if reponse_donnee == bonne_reponse:
@@ -60,87 +91,106 @@ def page_joueur(root, nom=None, retour=None, texte=None):
         else:
             feedback_label.config(text=f"❌ Mauvaise réponse (bonne réponse : {bonne_reponse})", fg="red")
 
-        # Désactiver tous les boutons radio après réponse
-        for rb in boutons_radio:
-            rb.config(state="disabled")
+        # Désactiver les boutons des réponses après sélection
+        for btn in boutons_radio:
+            btn.config(state="disabled")
 
         bouton_suivant.config(state="normal")
 
-    # Fonction pour afficher la prochaine question
     def afficher_question():
         feedback_label.config(text="")
         bouton_suivant.config(state="disabled")
-        choix_var.set("")
+        score_label.pack_forget()
 
-        # Nettoyage des anciens boutons radio
-        for rb in boutons_radio:
-            rb.destroy()
+        # Supprimer anciens boutons
+        for btn in boutons_radio:
+            btn.destroy()
         boutons_radio.clear()
+
+        # Supprimer ancienne frame des réponses si elle existe
+        if hasattr(afficher_question, "reponses_frame"):
+            afficher_question.reponses_frame.destroy()
+
+        afficher_question.reponses_frame = tk.Frame(main_content, bg="white")
+        afficher_question.reponses_frame.pack(pady=20)
 
         q = questions[index_question[0]]
         question_label.config(text=f"Q{index_question[0]+1}: {q['question']}")
 
-        for choix in q["choix"]:
-            rb = tk.Radiobutton(frame, text=choix, variable=choix_var, value=choix,
-                                command=verifier_reponse, bg="white", anchor="w")
-            rb.pack(fill="x", padx=30)
-            boutons_radio.append(rb)
+        for i, choix in enumerate(q["choix"]):
+            row = i // 2
+            col = i % 2
+            btn = tk.Button(
+                afficher_question.reponses_frame,
+                text=choix,
+                font=("Arial", 12, "bold"),
+                bg="black",
+                fg="white",
+                width=25,
+                height=4,
+                relief="raised",
+                bd=4,
+                command=lambda c=choix: verifier_reponse(c)
+            )
+            btn.grid(row=row, column=col, padx=20, pady=15)
+            boutons_radio.append(btn)
 
-    # Fonction quand on clique sur "Suivant"
     def question_suivante():
         index_question[0] += 1
         if index_question[0] < total:
             afficher_question()
         else:
-            # Fin du quiz
             question_label.config(text="🎉 Quiz terminé !")
             feedback_label.config(text="")
-            for rb in boutons_radio:
-                rb.destroy()
-            bouton_suivant.pack_forget()
+            for btn in boutons_radio:
+                btn.destroy()
+            bouton_suivant.pack_forget()  # cache le bouton Suivant
+
             score_label.config(text=f"✅ Score final : {score[0]} / {total}")
             score_label.pack(pady=20)
 
-            redo=tk.Button(frame, text="Recommencer", fg="white", bg="green", command=afficher_question, width=10)
-            redo.pack()
+            # Bouton Recommencer dans main_content, ne gêne pas Retour
+            redo = tk.Button(
+                main_content,
+                text="Recommencer",
+                fg="white",
+                bg="green",
+                command=rejouer,
+                width=12
+            )
+            redo.pack(pady=10)
+            afficher_question.redo_btn = redo  # Pour pouvoir le détruire ensuite
 
-    # Bouton Suivant
-    bouton_suivant = tk.Button(frame, text="Suivant", command=question_suivante,
-                               font=("Arial", 12), bg="blue", fg="white", state="disabled")
-    bouton_suivant.pack(pady=10)
-
-
-    # Démarrage : afficher la 1ère question
-    afficher_question()
-
-
-
-    def changer_page(frame_actuel, frame_suivant):
-      frame_actuel.pack_forget()
-      frame_suivant.pack(fill="both", expand=True)
+    def rejouer():
+        index_question[0] = 0
+        score[0] = 0
+        score_label.config(text="")
+        feedback_label.config(text="")
+        # Supprimer le bouton Recommencer
+        if hasattr(afficher_question, "redo_btn"):
+            afficher_question.redo_btn.destroy()
+        afficher_question()
+        bouton_suivant.pack(pady=10)
+        bouton_suivant.config(state="disabled")
 
     def retour_accueil():
         frame.pack_forget()
         if retour:
             retour.pack(fill="both", expand=True)
 
-    btn_retour = tk.Button(frame, text="Retour",
-                           command=retour_accueil,
-                           font=("Arial", 14, "bold"),
-                           bg="red", fg="white", width=10)
-    btn_retour.pack(pady=20)
+    # --- Lancement ---
+    afficher_question()
 
+    return frame
 
-
-    root.mainloop()
 
 if __name__ == "__main__":
     root = tk.Tk()
-    root.title("Test - Page Explorer Quiz")
+    root.title("Test - Page Joueur")
     root.geometry("800x600")
-    root.configure(bg="black")
+    root.configure(bg="white")
 
-    main_frame = page_joueur(root, None, root, texte="Mathematique")
-    main_frame.pack(fill="both", expand=True)
+    frame_test = page_joueur(root, nom="Admin", retour=None, texte="Mathematique")
+    frame_test.pack(fill="both", expand=True)
 
     root.mainloop()

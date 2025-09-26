@@ -2,10 +2,10 @@
    {
       "id": "1",
       "date creation": "2025-09-24",
-      "titre": "Mathematique",
+      "titre": "Mathematics",
       "questions": [
          {
-            "question": "Combien font 1+1?",
+            "question": "Combien font 1+1 ?",
             "choix": [
                "2",
                "4",
@@ -15,14 +15,24 @@
             "reponse": "2"
          },
          {
-            "question": "Combien fait 5/3?",
+            "question": "Quel est le carré de 5 ?",
             "choix": [
-               "infini",
-               "0",
-               "2",
-               "1.66"
+               "10",
+               "20",
+               "25",
+               "30"
             ],
-            "reponse": "1.66"
+            "reponse": "25"
+         },
+         {
+            "question": "Résoudre 3x = 9, quelle est la valeur de x ?",
+            "choix": [
+               "1",
+               "2",
+               "3",
+               "6"
+            ],
+            "reponse": "3"
          }
       ]
    },
@@ -32,17 +42,17 @@
       "titre": "Massyle",
       "questions": [
          {
-            "question": "Quel est la matière préféré de Massyle",
+            "question": "Quelle est la matière préférée de Massyle ?",
             "choix": [
-               "sciene",
+               "science",
                "philo",
                "français",
-               "base de donne"
+               "base de données"
             ],
-            "reponse": "base de donne"
+            "reponse": "base de données"
          },
          {
-            "question": "Qui est la prof pref de Massyle",
+            "question": "Qui est la prof préférée de Massyle ?",
             "choix": [
                "Asma",
                "asma",
@@ -52,7 +62,7 @@
             "reponse": "Asma"
          },
          {
-            "question": "La note pref de Massyle",
+            "question": "La note préférée de Massyle",
             "choix": [
                "0",
                "100",
@@ -62,7 +72,7 @@
             "reponse": "24"
          },
          {
-            "question": "Massyle + Massyle =?",
+            "question": "Massyle + Massyle = ?",
             "choix": [
                "double Massyle",
                "Massyle Massyle",
@@ -70,6 +80,689 @@
                "syle"
             ],
             "reponse": "Massyle Massyle"
+         }
+      ]
+   },
+   {
+      "id": "3",
+      "date creation": "2025-09-26",
+      "titre": "Batman",
+      "questions": [
+         {
+            "question": "Quel est le meilleur jeu Batman ?",
+            "choix": [
+               "City",
+               "Knight",
+               "Asylum",
+               "Origine"
+            ],
+            "reponse": "City"
+         },
+         {
+            "question": "Qui est l'antagoniste de Batman ?",
+            "choix": [
+               "Catwoman",
+               "Bane",
+               "Joker",
+               "Robin"
+            ],
+            "reponse": "Joker"
+         }
+      ]
+   },
+   {
+      "id": "4",
+      "date creation": "2025-09-27",
+      "titre": "Sciences",
+      "questions": [
+         {
+            "question": "Quel est l’élément chimique dont le symbole est H ?",
+            "choix": [
+               "Hélium",
+               "Hydrogène",
+               "Oxygène",
+               "Carbone"
+            ],
+            "reponse": "Hydrogène"
+         },
+         {
+            "question": "Quelle planète est la plus proche du Soleil ?",
+            "choix": [
+               "Vénus",
+               "Mercure",
+               "Terre",
+               "Mars"
+            ],
+            "reponse": "Mercure"
+         },
+         {
+            "question": "Combien de pattes a une araignée ?",
+            "choix": [
+               "6",
+               "8",
+               "10",
+               "12"
+            ],
+            "reponse": "8"
+         }
+      ]
+   },
+   {
+      "id": "5",
+      "date creation": "2025-09-28",
+      "titre": "Culture générale",
+      "questions": [
+         {
+            "question": "Qui a écrit 'Les Misérables' ?",
+            "choix": [
+               "Victor Hugo",
+               "Émile Zola",
+               "Albert Camus",
+               "Marcel Proust"
+            ],
+            "reponse": "Victor Hugo"
+         },
+         {
+            "question": "Quelle langue est parlée au Brésil ?",
+            "choix": [
+               "Espagnol",
+               "Portugais",
+               "Français",
+               "Anglais"
+            ],
+            "reponse": "Portugais"
+         },
+         {
+            "question": "Quel est l’organe principal de la respiration chez l’homme ?",
+            "choix": [
+               "Cœur",
+               "Poumons",
+               "Estomac",
+               "Foie"
+            ],
+            "reponse": "Poumons"
+         }
+      ]
+   },
+   {
+      "id": "6",
+      "date creation": "2025-09-29",
+      "titre": "Informatique",
+      "questions": [
+         {
+            "question": "Que signifie HTML ?",
+            "choix": [
+               "HyperText Markup Language",
+               "HighText Machine Language",
+               "Hyperloop Machine Language",
+               "None of the above"
+            ],
+            "reponse": "HyperText Markup Language"
+         },
+         {
+            "question": "Quel langage est principalement utilisé pour le développement web côté serveur ?",
+            "choix": [
+               "Python",
+               "JavaScript",
+               "C++",
+               "PHP"
+            ],
+            "reponse": "PHP"
+         },
+         {
+            "question": "Quelle entreprise a créé le langage Java ?",
+            "choix": [
+               "Microsoft",
+               "Sun Microsystems",
+               "Google",
+               "Apple"
+            ],
+            "reponse": "Sun Microsystems"
+         }
+      ]
+   },
+   {
+      "id": "7",
+      "date création": "2025-09-30",
+      "titre": "Sports",
+      "questions": [
+         {
+            "question": "Combien de joueurs y a-t-il dans une équipe de football ?",
+            "choix": [
+               "9",
+               "10",
+               "11",
+               "12"
+            ],
+            "reponse": "11"
+         },
+         {
+            "question": "Quelle nation a remporté la Coupe du Monde de la FIFA 2018 ?",
+            "choix": [
+               "Brésil",
+               "Allemagne",
+               "France",
+               "Argentine"
+            ],
+            "reponse": "France"
+         },
+         {
+            "question": "Dans quel sport utilise-t-on un 'putter' ?",
+            "choix": [
+               "Tennis",
+               "Golf",
+               "Baseball",
+               "Basketball"
+            ],
+            "reponse": "Golf"
+         }
+      ]
+   },
+   {
+      "id": "8",
+      "date création": "2025-10-01",
+      "titre": "Musique",
+      "questions": [
+         {
+            "question": "Qui est le roi de la pop ?",
+            "choix": [
+               "Elvis Presley",
+               "Michael Jackson",
+               "Freddie Mercury",
+               "Prince"
+            ],
+            "reponse": "Michael Jackson"
+         },
+         {
+            "question": "Quel instrument a six cordes ?",
+            "choix": [
+               "Piano",
+               "Violoncelle",
+               "Guitare",
+               "Saxophone"
+            ],
+            "reponse": "Guitare"
+         },
+         {
+            "question": "Quelle est la note la plus basse sur un piano ?",
+            "choix": [
+               "Do",
+               "La",
+               "Fa",
+               "Mi"
+            ],
+            "reponse": "La"
+         }
+      ]
+   },
+   {
+      "id": "9",
+      "date création": "2025-10-02",
+      "titre": "Littérature",
+      "questions": [
+         {
+            "question": "Qui a écrit 'Le Petit Prince' ?",
+            "choix": [
+               "Antoine de Saint-Exupéry",
+               "Victor Hugo",
+               "Jules Verne",
+               "Marcel Proust"
+            ],
+            "reponse": "Antoine de Saint-Exupéry"
+         },
+         {
+            "question": "Dans quel pays est née la littérature japonaise ?",
+            "choix": [
+               "Chine",
+               "Japon",
+               "Corée",
+               "Inde"
+            ],
+            "reponse": "Japon"
+         },
+         {
+            "question": "Quel est le genre littéraire de 'Roméo et Juliette' ?",
+            "choix": [
+               "Poésie",
+               "Tragédie",
+               "Comédie",
+               "Roman"
+            ],
+            "reponse": "Tragédie"
+         }
+      ]
+   },
+   {
+      "id": "10",
+      "date creation": "2025-10-03",
+      "titre": "Cinéma",
+      "questions": [
+         {
+            "question": "Qui a réalisé 'Titanic' ?",
+            "choix": [
+               "Steven Spielberg",
+               "James Cameron",
+               "Martin Scorsese",
+               "Quentin Tarantino"
+            ],
+            "reponse": "James Cameron"
+         },
+         {
+            "question": "Quel film a remporté l’Oscar du meilleur film en 2020 ?",
+            "choix": [
+               "1917",
+               "Joker",
+               "Parasite",
+               "Once Upon a Time in Hollywood"
+            ],
+            "reponse": "Parasite"
+         },
+         {
+            "question": "Quel acteur incarne Iron Man dans le MCU ?",
+            "choix": [
+               "Chris Evans",
+               "Robert Downey Jr.",
+               "Chris Hemsworth",
+               "Mark Ruffalo"
+            ],
+            "reponse": "Robert Downey Jr."
+         }
+      ]
+   },
+   {
+      "id": "11",
+      "date creation": "2025-10-04",
+      "titre": "Technologie",
+      "questions": [
+         {
+            "question": "Quel est le système d'exploitation développé par Apple ?",
+            "choix": [
+               "Windows",
+               "Linux",
+               "iOS",
+               "Android"
+            ],
+            "reponse": "iOS"
+         },
+         {
+            "question": "Quelle entreprise a créé le premier microprocesseur ?",
+            "choix": [
+               "Intel",
+               "AMD",
+               "IBM",
+               "Nvidia"
+            ],
+            "reponse": "Intel"
+         },
+         {
+            "question": "Que signifie CPU ?",
+            "choix": [
+               "Central Processing Unit",
+               "Computer Personal Unit",
+               "Central Performance Unit",
+               "Computer Processing Unit"
+            ],
+            "reponse": "Central Processing Unit"
+         }
+      ]
+   },
+   {
+      "id": "12",
+      "date creation": "2025-10-05",
+      "titre": "Langues",
+      "questions": [
+         {
+            "question": "Comment dit-on 'bonjour' en espagnol ?",
+            "choix": [
+               "Hola",
+               "Bonjour",
+               "Ciao",
+               "Hello"
+            ],
+            "reponse": "Hola"
+         },
+         {
+            "question": "Quelle langue est la plus parlée au monde ?",
+            "choix": [
+               "Anglais",
+               "Mandarin",
+               "Espagnol",
+               "Français"
+            ],
+            "reponse": "Mandarin"
+         },
+         {
+            "question": "Quel alphabet utilise la langue russe ?",
+            "choix": [
+               "Latin",
+               "Grec",
+               "Cyrillique",
+               "Arabe"
+            ],
+            "reponse": "Cyrillique"
+         }
+      ]
+   },
+   {
+      "id": "13",
+      "date creation": "2025-10-06",
+      "titre": "Philosophie",
+      "questions": [
+         {
+            "question": "Qui a écrit 'Le Discours de la méthode' ?",
+            "choix": [
+               "Platon",
+               "Descartes",
+               "Kant",
+               "Socrate"
+            ],
+            "reponse": "Descartes"
+         },
+         {
+            "question": "Quel concept est associé à Nietzsche ?",
+            "choix": [
+               "L’absurde",
+               "Le surhomme",
+               "La raison",
+               "La dialectique"
+            ],
+            "reponse": "Le surhomme"
+         },
+         {
+            "question": "Quelle philosophie étudie les questions morales ?",
+            "choix": [
+               "Esthétique",
+               "Épistémologie",
+               "Éthique",
+               "Logique"
+            ],
+            "reponse": "Éthique"
+         }
+      ]
+   },
+   {
+      "id": "14",
+      "date creation": "2025-10-07",
+      "titre": "Astronomie",
+      "questions": [
+         {
+            "question": "Quelle est la plus grande planète du système solaire ?",
+            "choix": [
+               "Terre",
+               "Saturne",
+               "Jupiter",
+               "Mars"
+            ],
+            "reponse": "Jupiter"
+         },
+         {
+            "question": "Qu’est-ce qu’une supernova ?",
+            "choix": [
+               "Une étoile morte",
+               "Une explosion d’étoile",
+               "Une planète gazeuse",
+               "Un trou noir"
+            ],
+            "reponse": "Une explosion d’étoile"
+         },
+         {
+            "question": "Quelle unité mesure la distance entre les étoiles ?",
+            "choix": [
+               "Kilomètres",
+               "Années-lumière",
+               "Mètres",
+               "Parsecs"
+            ],
+            "reponse": "Années-lumière"
+         }
+      ]
+   },
+   {
+      "id": "15",
+      "date creation": "2025-10-08",
+      "titre": "Cuisine",
+      "questions": [
+         {
+            "question": "Quel ingrédient est essentiel pour faire du pain ?",
+            "choix": [
+               "Sucre",
+               "Levure",
+               "Sel",
+               "Huile"
+            ],
+            "reponse": "Levure"
+         },
+         {
+            "question": "Quel plat est typique de l’Italie ?",
+            "choix": [
+               "Sushi",
+               "Pizza",
+               "Tacos",
+               "Curry"
+            ],
+            "reponse": "Pizza"
+         },
+         {
+            "question": "Lequel de ces fromages est français ?",
+            "choix": [
+               "Cheddar",
+               "Brie",
+               "Gouda",
+               "Parmesan"
+            ],
+            "reponse": "Brie"
+         }
+      ]
+   },
+   {
+      "id": "16",
+      "date creation": "2025-10-09",
+      "titre": "Art",
+      "questions": [
+         {
+            "question": "Qui a peint 'La Joconde' ?",
+            "choix": [
+               "Michel-Ange",
+               "Léonard de Vinci",
+               "Raphaël",
+               "Van Gogh"
+            ],
+            "reponse": "Léonard de Vinci"
+         },
+         {
+            "question": "Lequel de ces mouvements artistiques est le plus ancien ?",
+            "choix": [
+               "Cubisme",
+               "Impressionnisme",
+               "Renaissance",
+               "Surréalisme"
+            ],
+            "reponse": "Renaissance"
+         },
+         {
+            "question": "Quel artiste est célèbre pour ses tournesols ?",
+            "choix": [
+               "Picasso",
+               "Van Gogh",
+               "Monet",
+               "Rembrandt"
+            ],
+            "reponse": "Van Gogh"
+         }
+      ]
+   },
+   {
+      "id": "17",
+      "date creation": "2025-10-10",
+      "titre": "Animaux",
+      "questions": [
+         {
+            "question": "Quel animal est le plus rapide sur terre ?",
+            "choix": [
+               "Guépard",
+               "Lion",
+               "Tigre",
+               "Léopard"
+            ],
+            "reponse": "Guépard"
+         },
+         {
+            "question": "Combien de pattes a une araignée ?",
+            "choix": [
+               "6",
+               "8",
+               "10",
+               "12"
+            ],
+            "reponse": "8"
+         },
+         {
+            "question": "Quel est le plus grand mammifère marin ?",
+            "choix": [
+               "Orque",
+               "Baleine bleue",
+               "Dauphin",
+               "Requin blanc"
+            ],
+            "reponse": "Baleine bleue"
+         }
+      ]
+   },
+   {
+      "id": "18",
+      "date creation": "2025-10-11",
+      "titre": "Économie",
+      "questions": [
+         {
+            "question": "Que mesure le PIB d’un pays ?",
+            "choix": [
+               "Population",
+               "Richesse produite",
+               "Inflation",
+               "Taux de chômage"
+            ],
+            "reponse": "Richesse produite"
+         },
+         {
+            "question": "Quelle est la monnaie officielle du Japon ?",
+            "choix": [
+               "Yuan",
+               "Dollar",
+               "Yen",
+               "Won"
+            ],
+            "reponse": "Yen"
+         },
+         {
+            "question": "Qu’est-ce que l’inflation ?",
+            "choix": [
+               "Baisse des prix",
+               "Hausse des prix",
+               "Stagnation des prix",
+               "Aucun des trois"
+            ],
+            "reponse": "Hausse des prix"
+         }
+      ]
+   },
+   {
+      "id": "19",
+      "date creation": "2025-10-12",
+      "titre": "Psychologie",
+      "questions": [
+         {
+            "question": "Quelle est la science qui étudie le comportement humain ?",
+            "choix": [
+               "Sociologie",
+               "Psychologie",
+               "Philosophie",
+               "Anthropologie"
+            ],
+            "reponse": "Psychologie"
+         },
+         {
+            "question": "Qu’est-ce que le conditionnement pavlovien ?",
+            "choix": [
+               "Un type de mémoire",
+               "Un apprentissage associatif",
+               "Une émotion",
+               "Une maladie mentale"
+            ],
+            "reponse": "Un apprentissage associatif"
+         },
+         {
+            "question": "Quel psychologue est célèbre pour la psychanalyse ?",
+            "choix": [
+               "Carl Jung",
+               "Sigmund Freud",
+               "Jean Piaget",
+               "B.F. Skinner"
+            ],
+            "reponse": "Sigmund Freud"
+         }
+      ]
+   },
+   {
+      "id": "20",
+      "date creation": "2025-10-13",
+      "titre": "Langage informatique",
+      "questions": [
+         {
+            "question": "Quelle est la structure de données la plus simple ?",
+            "choix": [
+               "Tableau",
+               "Liste chaînée",
+               "Pile",
+               "File"
+            ],
+            "reponse": "Tableau"
+         },
+         {
+            "question": "Quel langage est principalement utilisé pour l’intelligence artificielle ?",
+            "choix": [
+               "Python",
+               "C",
+               "Java",
+               "HTML"
+            ],
+            "reponse": "Python"
+         },
+         {
+            "question": "Que signifie 'API' ?",
+            "choix": [
+               "Application Programming Interface",
+               "Advanced Programming Interface",
+               "Application Process Internet",
+               "Automatic Programming Interface"
+            ],
+            "reponse": "Application Programming Interface"
+         }
+      ]
+   },
+   {
+      "id": "21",
+      "date creation": "2025-09-26",
+      "titre": "Eric",
+      "questions": [
+         {
+            "question": "Eric est ?",
+            "choix": [
+               "gay",
+               "raciste",
+               "bg",
+               "fort"
+            ],
+            "reponse": "raciste"
+         },
+         {
+            "question": "Eric est bon en ?",
+            "choix": [
+               "base de donnée",
+               "math",
+               "python",
+               "csv"
+            ],
+            "reponse": "base de donnée"
          }
       ]
    }

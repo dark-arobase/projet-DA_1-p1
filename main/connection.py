@@ -11,11 +11,6 @@ def connexion_utilisateur(root, retour=None):
 
     tk.Label(frame, text="PAGE CONNEXION", font=("Arial", 24, "bold"),
              bg="black", fg="white").pack(pady=40)
-
-    # Frame centrale avec rectangle blanc
-    frame_centre = tk.Frame(frame, bg="black", width=350, height=400, highlightbackground="white",
-                        highlightthickness=2)
-    frame_centre.place(relx=0.5, rely=0.5, anchor="center")
     
     # Champ Nom
     tk.Label(frame, text="Nom d'utilisateur :", bg="black", font=box_text_font, fg="white").pack(pady=5)

@@ -30,7 +30,7 @@ def afficher_frame(frame):
 frame_accueil = tk.Frame(root, bg="black")
 
 # Frame centrale avec rectangle blanc
-frame_centre = tk.Frame(frame_accueil, bg="black", width=400, height=400, highlightbackground="white",
+frame_centre = tk.Frame(frame_accueil, bg="black", width=450, height=450, highlightbackground="white",
                         highlightthickness=2)
 frame_centre.place(relx=0.5, rely=0.5, anchor="center")
 

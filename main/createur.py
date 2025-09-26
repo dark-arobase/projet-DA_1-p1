@@ -1,5 +1,3 @@
-
-
 # Tkinter Frame for quiz creation (to use in your main app)
 import tkinter as tk
 from tkinter import messagebox
