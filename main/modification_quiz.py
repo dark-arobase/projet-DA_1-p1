@@ -84,9 +84,28 @@ def page_modification_quiz(root, nom, retour=None):
             reponse_entry.pack(padx=10)
             question_widgets.append(reponse_entry)
 
+            # Bouton supprimer la question
+            btn_delete_q = tk.Button(scrollable_frame, text="Supprimer cette question",
+                                     command=lambda idx=i: supprimer_question(idx),
+                                     bg="black", fg="white")
+            btn_delete_q.pack(pady=5)
+            question_widgets.append(btn_delete_q)
+
             sep = tk.Label(scrollable_frame, text="-" * 70, fg="gray", bg="black")
             sep.pack(pady=5)
             question_widgets.append(sep)
+
+    def supprimer_question(index):
+        if not current_quiz:
+            return
+        if index < len(current_quiz["questions"]):
+            del current_quiz["questions"][index]
+
+            with open(json_path, "w", encoding="utf-8") as f:
+                json.dump(quiz_data, f, indent=4, ensure_ascii=False)
+
+            afficher_quiz(listbox.curselection()[0])  # recharge affichage
+            messagebox.showinfo("Succès", "Question supprimée avec succès !")
 
     def sauvegarder():
         if not current_quiz:
@@ -103,7 +122,7 @@ def page_modification_quiz(root, nom, retour=None):
             current_quiz["questions"][i]["choix"] = [c.strip() for c in choix_text.split(";") if c.strip()]
             current_quiz["questions"][i]["reponse"] = reponse_text
 
-            idx += 7
+            idx += 8
 
         with open(json_path, "w", encoding="utf-8") as f:
             json.dump(quiz_data, f, indent=4, ensure_ascii=False)
@@ -117,6 +136,28 @@ def page_modification_quiz(root, nom, retour=None):
     btn_save = tk.Button(bottom_frame, text="Sauvegarder les modifications",
                          command=sauvegarder, bg="black", fg="white", font=("Arial", 14))
     btn_save.pack(side="left", padx=20)
+
+    # Supprimer un quiz entier
+    def supprimer_quiz():
+        selection = listbox.curselection()
+        if not selection:
+            messagebox.showerror("Erreur", "Veuillez sélectionner un quiz à supprimer.")
+            return
+        index = selection[0]
+        del quiz_data[index]
+
+        with open(json_path, "w", encoding="utf-8") as f:
+            json.dump(quiz_data, f, indent=4, ensure_ascii=False)
+
+        listbox.delete(index)
+        for w in question_widgets:
+            w.destroy()
+        question_widgets.clear()
+        messagebox.showinfo("Succès", "Quiz supprimé avec succès !")
+
+    btn_delete_quiz = tk.Button(bottom_frame, text="Supprimer le quiz",
+                                command=supprimer_quiz, bg="black", fg="white", font=("Arial", 14))
+    btn_delete_quiz.pack(side="left", padx=20)
 
     def on_select(event):
         selection = event.widget.curselection()
