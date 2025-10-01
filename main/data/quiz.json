@@ -52,16 +52,6 @@
                 "reponse": "base de données"
             },
             {
-                "question": "Qui est la prof préférée de Massyle ?",
-                "choix": [
-                    "Asma",
-                    "asma",
-                    "ASMA",
-                    "asmia"
-                ],
-                "reponse": "Asma"
-            },
-            {
                 "question": "La note préférée de Massyle",
                 "choix": [
                     "0",

@@ -104,7 +104,7 @@ def page_modification_quiz(root, nom, retour=None):
             with open(json_path, "w", encoding="utf-8") as f:
                 json.dump(quiz_data, f, indent=4, ensure_ascii=False)
 
-            afficher_quiz(listbox.curselection()[0])  # recharge affichage
+            afficher_quiz(listbox.curselection()[0]) 
             messagebox.showinfo("Succès", "Question supprimée avec succès !")
 
     def sauvegarder():
