@@ -738,32 +738,5 @@
                 "reponse": "Application Programming Interface"
             }
         ]
-    },
-    {
-        "id": "21",
-        "date creation": "2025-09-26",
-        "titre": "Eric",
-        "questions": [
-            {
-                "question": "Eric est ?",
-                "choix": [
-                    "gay",
-                    "raciste",
-                    "bg",
-                    "fort"
-                ],
-                "reponse": "bg"
-            },
-            {
-                "question": "Eric est bon en ?",
-                "choix": [
-                    "base de donnée",
-                    "math",
-                    "python",
-                    "csv"
-                ],
-                "reponse": "math"
-            }
-        ]
     }
 ]

@@ -12,11 +12,6 @@ root.geometry("800x600")
 root.configure(bg="black")
 
 # -------------------
-# Image de fond
-# -------------------
-
-
-# -------------------
 # Gestion des frames
 # -------------------
 def afficher_frame(frame):
