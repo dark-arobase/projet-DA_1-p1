@@ -132,7 +132,7 @@ def page_modification_quiz(root, nom, retour=None):
             retour.pack(fill="both", expand=True)
 
     btn_retour = tk.Button(bottom_frame, text="Retour", command=retour_accueil,
-                           bg="red", fg="white", font=("Arial", 14), width=10)
+                           bg="black", fg="white", font=("Arial", 14), width=10)
     btn_retour.pack(side="right", padx=20)
 
     return frame
