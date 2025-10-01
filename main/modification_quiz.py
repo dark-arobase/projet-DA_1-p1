@@ -16,7 +16,7 @@ def page_modification_quiz(root, nom, retour=None):
 
     json_path = "main/data/quiz.json"
     if not os.path.exists(json_path):
-        tk.Label(frame, text="Fichier quiz.json introuvable", fg="red", bg="black").pack()
+        tk.Label(frame, text="Fichier quiz.json introuvable", fg="black", bg="white").pack()
         return frame
 
     with open(json_path, "r", encoding="utf-8") as f:
@@ -115,7 +115,7 @@ def page_modification_quiz(root, nom, retour=None):
     bottom_frame.pack(fill="x", side="bottom", pady=15)
 
     btn_save = tk.Button(bottom_frame, text="Sauvegarder les modifications",
-                         command=sauvegarder, bg="green", fg="white", font=("Arial", 14))
+                         command=sauvegarder, bg="black", fg="white", font=("Arial", 14))
     btn_save.pack(side="left", padx=20)
 
     def on_select(event):
