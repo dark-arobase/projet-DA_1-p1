@@ -13,7 +13,7 @@ def page_joueur(root, nom=None, retour=None, texte=None):
     user_frame = tk.Frame(navbar, bg="black")
     user_frame.pack(side="right", padx=10)
 
-    user_label = tk.Label(user_frame, text=f"{nom}, (admin)", fg="white", bg="black")
+    user_label = tk.Label(user_frame, text=f"{nom}", fg="white", bg="black")
     user_label.pack(side="left", padx=5)
 
     # Titre principal
