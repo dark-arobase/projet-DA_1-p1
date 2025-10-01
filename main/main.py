@@ -3,25 +3,19 @@ import tkinter as tk
 import connection
 import inscription
 
-# -------------------
 # Fenêtre principale
-# -------------------
 root = tk.Tk()
 root.title("Yuppiquiz")
 root.geometry("800x600")
 root.configure(bg="black")
 
-# -------------------
 # Gestion des frames
-# -------------------
 def afficher_frame(frame):
     for f in (frame_accueil, frame_inscription, frame_connexion):
         f.pack_forget()
     frame.pack(fill="both", expand=True)
 
-# -------------------
 # Page Accueil
-# -------------------
 frame_accueil = tk.Frame(root, bg="black")
 
 # Frame centrale avec rectangle blanc
@@ -43,15 +37,11 @@ tk.Button(frame_centre, text="SE CONNECTER",
           command=lambda: afficher_frame(frame_connexion),
           bg="white", fg="black", font=("Arial", 12, "bold")).pack(pady=10)
 
-# -------------------
 # Créer frames via modules
-# -------------------
 frame_inscription = inscription.creer_inscription(root, retour=frame_accueil)
 frame_connexion = connection.connexion_utilisateur(root, retour=frame_accueil)
 
-# -------------------
 # Lancer sur la page accueil
-# -------------------
 afficher_frame(frame_accueil)
 
 root.mainloop()

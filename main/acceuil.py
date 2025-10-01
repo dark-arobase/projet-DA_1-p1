@@ -7,21 +7,12 @@ import modification_quiz
 def creer_accueil_utilisateur(root, nom, retour=None):
     frame = tk.Frame(root, bg="black")
     root.title("Acceuil")
-    # ------------------------------
     # BARRE DE NAVIGATION EN HAUT
-    # ------------------------------
     navbar = tk.Frame(frame, bg="black", height=50)
     navbar.pack(fill="x")
 
     def on_nav_click(name):
         print(f"Navigation : {name}")
-
-    #nav_buttons = [("Explorer", lambda: changer_page(frame, explore_quiz.page_explorer_quiz(root, nom, retour=frame))),
-                   #("Mode utilisateur", lambda: changer_page(frame, creer_accueil_utilisateur(root, nom, retour=frame)))]
-    #for text, cmd in nav_buttons:
-    #    btn = tk.Button(navbar, text=text, command=cmd,
-    #                    bg="black", fg="white", relief="flat", padx=20, pady=10)
-    #    btn.pack(side="left", padx=5, pady=5)
 
     # Espace utilisateur à droite
     user_frame = tk.Frame(navbar, bg="gray")
@@ -33,17 +24,10 @@ def creer_accueil_utilisateur(root, nom, retour=None):
     avatar = tk.Canvas(user_frame, width=30, height=30, bg="black", highlightthickness=0)
     avatar.create_oval(5, 5, 25, 25, fill="gray")
     avatar.pack(side="left")
-
-    # ------------------------------
     # MESSAGE D’ACCUEIL
-    # ------------------------------
     label = tk.Label(frame, text=f"Bienvenue {nom} !", font=("Arial", 24, "bold"),
     bg="black", fg="white")
     label.pack(pady=10)  # Réduit l’espace vertical ici
-
-    # ------------------------------
-    # CONTENU PRINCIPAL (BOUTONS)
-    # ------------------------------
     # CONTENU PRINCIPAL (BOUTONS)
     main_frame = tk.Frame(frame, bg="black")
     main_frame.pack(expand=True)  # <- enlever fill="both" pour centrer verticalement
@@ -60,12 +44,8 @@ def creer_accueil_utilisateur(root, nom, retour=None):
 
     for i in range(3):
         main_frame.grid_rowconfigure(i, weight=0)
-    main_frame.grid_columnconfigure(0, weight=1)  # centre horizontalement les boutons dans la colonne
-
-
-    # ------------------------------
+    main_frame.grid_columnconfigure(0, weight=1)  
     # BOUTON DE DECONNEXION
-    # ------------------------------
     if retour:
         def deconnexion():
             frame.pack_forget()
@@ -75,11 +55,9 @@ def creer_accueil_utilisateur(root, nom, retour=None):
 
     return frame
 
-#-------
 def changer_page(frame_actuel, frame_suivant):
     frame_actuel.pack_forget()
     frame_suivant.pack(fill="both", expand=True)
-#-------
 
 # Mode test autonome
 if __name__ == "__main__":

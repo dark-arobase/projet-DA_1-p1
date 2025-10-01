@@ -24,13 +24,13 @@ def page_joueur(root, nom=None, retour=None, texte=None):
         with open("main/data/quiz.json", "r", encoding="utf-8") as f:
             data = json.load(f)
     except FileNotFoundError:
-        tk.Label(frame, text="❌ Fichier quiz.json introuvable", fg="red", bg="white").pack(pady=20)
+        tk.Label(frame, text="Fichier quiz.json introuvable", fg="red", bg="white").pack(pady=20)
         return frame
 
     # --- Chercher le quiz correspondant ---
     quiz = next((q for q in data if q['titre'] == texte), None)
     if not quiz:
-        tk.Label(frame, text="❌ Ce quiz n'existe pas", fg="red", bg="white").pack(pady=20)
+        tk.Label(frame, text="Ce quiz n'existe pas", fg="red", bg="white").pack(pady=20)
         return frame
 
     questions = quiz["questions"]
@@ -74,10 +74,10 @@ def page_joueur(root, nom=None, retour=None, texte=None):
         bonne_reponse = questions[index_question[0]]["reponse"]
 
         if reponse_donnee == bonne_reponse:
-            feedback_label.config(text="✅ Bonne réponse", fg="green")
+            feedback_label.config(text="Bonne réponse", fg="green")
             score[0] += 1
         else:
-            feedback_label.config(text=f"❌ Mauvaise réponse (bonne réponse : {bonne_reponse})", fg="red")
+            feedback_label.config(text=f"Mauvaise réponse (bonne réponse : {bonne_reponse})", fg="red")
 
         # Désactiver les boutons des réponses après sélection
         for btn in boutons_radio:
@@ -131,14 +131,14 @@ def page_joueur(root, nom=None, retour=None, texte=None):
             afficher_question()
         else:
             # Fin du quiz
-            question_label.config(text="🎉 Quiz terminé !")
+            question_label.config(text=" Quiz terminé !")
             feedback_label.config(text="")
             for btn in boutons_radio:
                 btn.destroy()
             bouton_suivant.pack_forget()  # cache le bouton Suivant
 
             # Affiche score
-            score_label.config(text=f"✅ Score final : {score[0]} / {total}")
+            score_label.config(text=f" Score final : {score[0]} / {total}")
             score_label.pack(pady=20)
 
             # Bouton Recommencer (placé sous le score)

@@ -35,7 +35,7 @@ def page_explorer_quiz(root, nom=None, retour=None):
         with open("main/data/quiz.json", "r", encoding="utf-8") as f:
             data = json.load(f)
     except FileNotFoundError:
-        tk.Label(grid_frame, text="❌ Fichier quiz.json introuvable", fg="red", bg="black").pack(pady=20)
+        tk.Label(grid_frame, text="Fichier quiz.json introuvable", fg="red", bg="black").pack(pady=20)
         return frame
 
     def changer_page(frame_actuel, frame_suivant):

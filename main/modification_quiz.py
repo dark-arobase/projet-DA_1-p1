@@ -16,7 +16,7 @@ def page_modification_quiz(root, nom, retour=None):
 
     json_path = "main/data/quiz.json"
     if not os.path.exists(json_path):
-        tk.Label(frame, text="❌ Fichier quiz.json introuvable", fg="red", bg="black").pack()
+        tk.Label(frame, text="Fichier quiz.json introuvable", fg="red", bg="black").pack()
         return frame
 
     with open(json_path, "r", encoding="utf-8") as f:
