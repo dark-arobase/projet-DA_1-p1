@@ -2,7 +2,7 @@ main/
 ├── classe/                         # Classes Python (modèles)
 │   ├── Joueur.py
 │   ├── quiz.py
-│   ├── utilisateurs.py             # (attention à l’orthographe)
+│   ├── utilisateurs.py           
 │   └── __init__.py
 │
 ├── data/                           # Données (quiz, utilisateurs, etc.)
@@ -18,7 +18,6 @@ main/
 ├── createur.py                     # Créer un nouveau quiz
 ├── crée_quiz.py                    # (à fusionner avec createur.py ?)
 ├── main.py                         # Point d'entrée principal de ton projet
-├── wht.py                          # (à clarifier : utilité ?)
 |___ __pycache__/                    # Cache Python (peut être ignoré)
 ├── .gitignore
 ├── LICENSE                         # (MIT, GPL, etc.)
